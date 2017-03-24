@@ -23,6 +23,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D28A279F1E85CC6000CFB03A /* in_1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = in_1; sourceTree = "<group>"; };
+		D28A27A01E85CC7100CFB03A /* in_2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = in_2; sourceTree = "<group>"; };
+		D28A27A11E85CC7F00CFB03A /* in_3 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = in_3; sourceTree = "<group>"; };
+		D28A27A21E85CC9200CFB03A /* out_1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_1; sourceTree = "<group>"; };
+		D28A27A31E85CC9E00CFB03A /* out_2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_2; sourceTree = "<group>"; };
+		D28A27A41E85CCAA00CFB03A /* out_3 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_3; sourceTree = "<group>"; };
+		D28A27A51E85D2D500CFB03A /* in_4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = in_4; sourceTree = "<group>"; };
+		D28A27A61E85D2EE00CFB03A /* out_4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_4; sourceTree = "<group>"; };
 		D2C593CE1E806EA2001E18D2 /* assignment-one */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "assignment-one"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C593D11E806EA2001E18D2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +46,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D28A279E1E85CC3500CFB03A /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				D28A279F1E85CC6000CFB03A /* in_1 */,
+				D28A27A01E85CC7100CFB03A /* in_2 */,
+				D28A27A11E85CC7F00CFB03A /* in_3 */,
+				D28A27A51E85D2D500CFB03A /* in_4 */,
+				D28A27A21E85CC9200CFB03A /* out_1 */,
+				D28A27A31E85CC9E00CFB03A /* out_2 */,
+				D28A27A41E85CCAA00CFB03A /* out_3 */,
+				D28A27A61E85D2EE00CFB03A /* out_4 */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
 		D2C593C51E806EA2001E18D2 = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +80,7 @@
 		D2C593D01E806EA2001E18D2 /* assignment-one */ = {
 			isa = PBXGroup;
 			children = (
+				D28A279E1E85CC3500CFB03A /* tests */,
 				D2C593D11E806EA2001E18D2 /* main.cpp */,
 			);
 			path = "assignment-one";
@@ -246,6 +270,7 @@
 				D2C593D71E806EA2001E18D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
