@@ -33,6 +33,16 @@
 		D28A27A61E85D2EE00CFB03A /* out_4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_4; sourceTree = "<group>"; };
 		D2C593CE1E806EA2001E18D2 /* assignment-one */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "assignment-one"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C593D11E806EA2001E18D2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D2F714D11E867A9600F05B54 /* in_5 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = in_5; sourceTree = "<group>"; };
+		D2F714D21E867C3800F05B54 /* out_5 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_5; sourceTree = "<group>"; };
+		D2F714D31E867C5D00F05B54 /* in_6 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = in_6; sourceTree = "<group>"; };
+		D2F714D41E867C7500F05B54 /* out_6 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_6; sourceTree = "<group>"; };
+		D2F714D51E867CAC00F05B54 /* in_7 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = in_7; sourceTree = "<group>"; };
+		D2F714D61E867CBD00F05B54 /* out_7 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_7; sourceTree = "<group>"; };
+		D2F714D71E867CE100F05B54 /* in_8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = in_8; sourceTree = "<group>"; };
+		D2F714D81E867CF500F05B54 /* out_8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_8; sourceTree = "<group>"; };
+		D2F714D91E867D3300F05B54 /* in_9 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = in_9; sourceTree = "<group>"; };
+		D2F714DA1E867D4600F05B54 /* out_9 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_9; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,10 +63,20 @@
 				D28A27A01E85CC7100CFB03A /* in_2 */,
 				D28A27A11E85CC7F00CFB03A /* in_3 */,
 				D28A27A51E85D2D500CFB03A /* in_4 */,
+				D2F714D11E867A9600F05B54 /* in_5 */,
+				D2F714D31E867C5D00F05B54 /* in_6 */,
+				D2F714D51E867CAC00F05B54 /* in_7 */,
+				D2F714D71E867CE100F05B54 /* in_8 */,
+				D2F714D91E867D3300F05B54 /* in_9 */,
 				D28A27A21E85CC9200CFB03A /* out_1 */,
 				D28A27A31E85CC9E00CFB03A /* out_2 */,
 				D28A27A41E85CCAA00CFB03A /* out_3 */,
 				D28A27A61E85D2EE00CFB03A /* out_4 */,
+				D2F714D21E867C3800F05B54 /* out_5 */,
+				D2F714D41E867C7500F05B54 /* out_6 */,
+				D2F714D61E867CBD00F05B54 /* out_7 */,
+				D2F714D81E867CF500F05B54 /* out_8 */,
+				D2F714DA1E867D4600F05B54 /* out_9 */,
 			);
 			path = tests;
 			sourceTree = "<group>";
