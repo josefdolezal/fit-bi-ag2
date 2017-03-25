@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		D2F714DE1E86927500F05B54 /* tests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = D2F714DF1E86927500F05B54 /* Build configuration list for PBXAggregateTarget "tests" */;
+			buildPhases = (
+				D2F714E41E86928A00F05B54 /* Run tests */,
+			);
+			dependencies = (
+			);
+			name = tests;
+			productName = tests;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		D2C593D21E806EA2001E18D2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2C593D11E806EA2001E18D2 /* main.cpp */; };
 /* End PBXBuildFile section */
@@ -43,6 +57,8 @@
 		D2F714D81E867CF500F05B54 /* out_8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_8; sourceTree = "<group>"; };
 		D2F714D91E867D3300F05B54 /* in_9 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = in_9; sourceTree = "<group>"; };
 		D2F714DA1E867D4600F05B54 /* out_9 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out_9; sourceTree = "<group>"; };
+		D2F714DB1E8683E800F05B54 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; path = Makefile; sourceTree = "<group>"; usesTabs = 1; };
+		D2F714DD1E86864D00F05B54 /* tests.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = tests.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +118,8 @@
 			children = (
 				D28A279E1E85CC3500CFB03A /* tests */,
 				D2C593D11E806EA2001E18D2 /* main.cpp */,
+				D2F714DB1E8683E800F05B54 /* Makefile */,
+				D2F714DD1E86864D00F05B54 /* tests.sh */,
 			);
 			path = "assignment-one";
 			sourceTree = "<group>";
@@ -139,6 +157,10 @@
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 					};
+					D2F714DE1E86927500F05B54 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = D2C593C91E806EA2001E18D2 /* Build configuration list for PBXProject "assignment-one" */;
@@ -154,9 +176,27 @@
 			projectRoot = "";
 			targets = (
 				D2C593CD1E806EA2001E18D2 /* assignment-one */,
+				D2F714DE1E86927500F05B54 /* tests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D2F714E41E86928A00F05B54 /* Run tests */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run tests";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$(cd \"$SRCROOT/$PROJECT\"; make tests)";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2C593CA1E806EA2001E18D2 /* Sources */ = {
@@ -271,6 +311,20 @@
 			};
 			name = Release;
 		};
+		D2F714E01E86927500F05B54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D2F714E11E86927500F05B54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -291,6 +345,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D2F714DF1E86927500F05B54 /* Build configuration list for PBXAggregateTarget "tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2F714E01E86927500F05B54 /* Debug */,
+				D2F714E11E86927500F05B54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
