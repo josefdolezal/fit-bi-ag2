@@ -11,7 +11,6 @@ Seznam materiálů k ostatním předmětům je v [samostatném repozitáři](htt
 
 ## Domácí úlohy
 * [Modernizace železniční sítě](assignment-one)
-* [Krmení v ZOO](assignment-two)
 
 ## Poznámka
 Uvedené zdrojové kódy nebo jejich části slouží pro inspiraci a jako demonstrace
