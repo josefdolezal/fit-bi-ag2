@@ -68,6 +68,15 @@ void dfs(City * map, int & time, int node, int parent);
 City * display(City * map, int mapSize);
 
 /**
+ Checks if given graph is valid to display
+
+ @param map Graph to be displayed
+ @param mapSize Size of graph to be able to iterate through it
+ @return True if graph is displayable, false otherwise
+ */
+bool validate(City * map, int mapSize);
+
+/**
  Takes care of correct graph memory cleanup
 
  @param map Graph to be cleaned from memory
@@ -88,6 +97,8 @@ public:
     int visitedAt = -1;
 
     int closestNeighbor = -1;
+
+    int displayableEdges = 0;
 
     bool isVisited() { return visitedAt != -1; }
 
@@ -123,6 +134,7 @@ City * loadStreets(City * map, const int mapSize) {
         int streetsCount;
 
         cin >> streetsCount;
+        map[start].displayableEdges = streetsCount;
 
         for(int iterator = 0; iterator < streetsCount; ++iterator) {
             int destination;
@@ -150,9 +162,10 @@ void dfs(City * map, int & time, int node, int parent) {
     time += 1;
     currentCity.visitedAt = time;
 
-    cout << "opening node " << node << " with parent " << parent << endl;
+    // cout << "opening node " << node << " with parent " << parent << endl;
 
-    for(int neighbor: currentCity.neighbors) {
+    for(int neighborsIterator = 0; neighborsIterator < currentCity.neighbors.size(); ++neighborsIterator) {
+        int neighbor = currentCity.neighbors[neighborsIterator];
         City & cityNeighbor = map[neighbor];
 
         // Tree edge
@@ -160,39 +173,63 @@ void dfs(City * map, int & time, int node, int parent) {
             dfs(map, time, neighbor, node);
 
             if(!cityNeighbor.hasClosestNeighbor() || cityNeighbor.closestNeighbor >= cityNeighbor.visitedAt) {
-                cout << node << " -> " << neighbor << " is a bridge" << endl;
-                cout << "    because neib's neib " << !cityNeighbor.hasClosestNeighbor() << " or " << cityNeighbor.closestNeighbor << " > " << cityNeighbor.visitedAt << endl;
+                // cout << node << " -> " << neighbor << " is a bridge" << endl;
+                // cout << "    because neib's neib " << !cityNeighbor.hasClosestNeighbor() << " or " << cityNeighbor.closestNeighbor << " > " << cityNeighbor.visitedAt << endl;
             }
 
             currentCity.closestNeighbor = minWithInfinity(currentCity.closestNeighbor,
                                               cityNeighbor.closestNeighbor);
         }
         // Back edge
-        else if(/*neighbor != parent &&*/ cityNeighbor.visitedAt < currentCity.visitedAt) {
-            cout << node << " -> " << neighbor << " is a back edge" << endl;
-            cout << "    min(" << currentCity.closestNeighbor << ", " << cityNeighbor.visitedAt << ") = " << minWithInfinity(currentCity.closestNeighbor, cityNeighbor.visitedAt) << endl;
+        else if(neighbor != parent && cityNeighbor.visitedAt < currentCity.visitedAt) {
+            // cout << node << " -> " << neighbor << " is a back edge" << endl;
+            // cout << "    min(" << currentCity.closestNeighbor << ", " << cityNeighbor.visitedAt << ") = " << minWithInfinity(currentCity.closestNeighbor, cityNeighbor.visitedAt) << endl;
             currentCity.closestNeighbor = minWithInfinity(currentCity.closestNeighbor, cityNeighbor.visitedAt);
         }
         else {
-            cout << node << " -> " << neighbor << " could be trashed" << endl;
+            // Mark edge as not displayable, decrement total count of displayable edges
+            currentCity.displayableEdges -= 1;
+            currentCity.neighbors[neighborsIterator] = -1;
         }
     }
 }
 
 City * display(City * map, int mapSize) {
-    cout << "----" << endl;
+    if(!validate(map, mapSize)) {
+        cout << "No solution." << endl;
+        return map;
+    }
+
     for(int city = 0; city < mapSize; ++city) {
         int neighborsCount = (int) map[city].neighbors.size();
+        int displayableNeighbors = map[city].displayableEdges;
 
-        cout << neighborsCount;
+        // Output 0 if no display
+        if(map[city].displayableEdges <= 0) {
+            cout << 0 << endl;
+            continue;
+        }
 
-        for(int neighbor = 0; neighbor < neighborsCount; ++neighbor)
+        cout << displayableNeighbors;
+
+        for(int neighbor = 0; neighbor < neighborsCount; ++neighbor) {
+            // Skip nondisplayable edges
+            if(map[city].neighbors[neighbor] == -1) continue;
+
             cout << " " << map[city].neighbors[neighbor];
+        }
 
         cout << endl;
     }
 
     return map;
+}
+
+bool validate(City * map, int mapSize) {
+    for(int i = 0; i < mapSize; ++i)
+        if(!map[i].hasClosestNeighbor()) return false;
+
+    return true;
 }
 
 void cleanup(City * map) {
