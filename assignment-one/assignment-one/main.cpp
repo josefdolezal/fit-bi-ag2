@@ -162,9 +162,9 @@ void dfs(City * map, int & time, int node, int parent) {
     time += 1;
     currentCity.visitedAt = time;
 
-    // cout << "opening node " << node << " with parent " << parent << endl;
+    //cout << "opening node " << node << " with parent " << parent << endl;
 
-    for(int neighborsIterator = 0; neighborsIterator < currentCity.neighbors.size(); ++neighborsIterator) {
+    for(int neighborsIterator = 0; neighborsIterator < (int) currentCity.neighbors.size(); ++neighborsIterator) {
         int neighbor = currentCity.neighbors[neighborsIterator];
         City & cityNeighbor = map[neighbor];
 
@@ -173,8 +173,11 @@ void dfs(City * map, int & time, int node, int parent) {
             dfs(map, time, neighbor, node);
 
             if(!cityNeighbor.hasClosestNeighbor() || cityNeighbor.closestNeighbor >= cityNeighbor.visitedAt) {
-                // cout << node << " -> " << neighbor << " is a bridge" << endl;
-                // cout << "    because neib's neib " << !cityNeighbor.hasClosestNeighbor() << " or " << cityNeighbor.closestNeighbor << " > " << cityNeighbor.visitedAt << endl;
+                //cout << node << " -> " << neighbor << " is a bridge" << endl;
+                //cout << "    because neib's neib " << !cityNeighbor.hasClosestNeighbor() << " or " << cityNeighbor.closestNeighbor << " > " << cityNeighbor.visitedAt << endl;
+                cityNeighbor.closestNeighbor = -1;
+                // Graph is invalid, no need to continue
+                return;
             }
 
             currentCity.closestNeighbor = minWithInfinity(currentCity.closestNeighbor,
@@ -182,8 +185,8 @@ void dfs(City * map, int & time, int node, int parent) {
         }
         // Back edge
         else if(neighbor != parent && cityNeighbor.visitedAt < currentCity.visitedAt) {
-            // cout << node << " -> " << neighbor << " is a back edge" << endl;
-            // cout << "    min(" << currentCity.closestNeighbor << ", " << cityNeighbor.visitedAt << ") = " << minWithInfinity(currentCity.closestNeighbor, cityNeighbor.visitedAt) << endl;
+            //cout << node << " -> " << neighbor << " is a back edge" << endl;
+            //cout << "    min(" << currentCity.closestNeighbor << ", " << cityNeighbor.visitedAt << ") = " << minWithInfinity(currentCity.closestNeighbor, cityNeighbor.visitedAt) << endl;
             currentCity.closestNeighbor = minWithInfinity(currentCity.closestNeighbor, cityNeighbor.visitedAt);
         }
         else {
