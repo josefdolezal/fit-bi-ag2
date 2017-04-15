@@ -30,11 +30,10 @@ struct Coordinates {
  */
 struct Edge {
     int flow;
-    int maxFlow;
     int destination;
 
-    Edge(int flow, int maxFlow, int destination):
-        flow(flow), maxFlow(maxFlow), destination(destination) {}
+    Edge(int flow, int destination):
+        flow(flow), destination(destination) {}
 };
 
 /**
@@ -222,22 +221,22 @@ Cube * createGraph(Coordinates size) {
 
                 // Add all posible neighbors and flatten their index
                 if(z + 1 < size.z)
-                    cube.neighbors.push_back(Edge(0, 1, flattenCoordinates(Coordinates(x, y, z+1), size)));
+                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x, y, z+1), size)));
                 if(z - 1 >= 0)
-                    cube.neighbors.push_back(Edge(0, 1, flattenCoordinates(Coordinates(x, y, z-1), size)));
+                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x, y, z-1), size)));
                 if(y + 1 < size.y)
-                    cube.neighbors.push_back(Edge(0, 1, flattenCoordinates(Coordinates(x, y+1, z), size)));
+                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x, y+1, z), size)));
                 if(y - 1 >= 0)
-                    cube.neighbors.push_back(Edge(0, 1, flattenCoordinates(Coordinates(x, y-1, z), size)));
+                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x, y-1, z), size)));
                 if(x + 1 < size.x)
-                    cube.neighbors.push_back(Edge(0, 1, flattenCoordinates(Coordinates(x+1, y, z), size)));
+                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x+1, y, z), size)));
                 if(x - 1 >= 0)
-                    cube.neighbors.push_back(Edge(0, 1, flattenCoordinates(Coordinates(x-1, y, z), size)));
+                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x-1, y, z), size)));
 
                 // Add global sink as neighbor if cube is on side of graph
                 if(isOnGraphSide(Coordinates(x, y, z), size)) {
-                    graphSink(graph).neighbors.push_back(Edge(0, INT_MAX, 1));
-                    cube.neighbors.push_back(Edge(0, INT_MAX, 1));
+                    graphSink(graph).neighbors.push_back(Edge(INT_MAX, 1));
+                    cube.neighbors.push_back(Edge(INT_MAX, 1));
                 }
 
                 ++index;
@@ -259,8 +258,8 @@ Cube * readInfectedCubes(Cube * graph, Coordinates size) {
     for (int i = 0; i < count; ++i) {
         int infectedCube = flattenCoordinates(readCoordinates(), size) + 2;
 
-        start.neighbors.push_back(Edge(0, INT_MAX, infectedCube));
-        graph[infectedCube].neighbors.push_back(Edge(0, INT_MAX, 0));
+        start.neighbors.push_back(Edge(INT_MAX, infectedCube));
+        graph[infectedCube].neighbors.push_back(Edge(INT_MAX, 0));
     }
     return graph;
 }
@@ -273,8 +272,8 @@ Cube * readSpecialCubes(Cube * graph, Coordinates size) {
     for (int i = 0; i < count; ++i) {
         int special = flattenCoordinates(readCoordinates(), size) + 2;
 
-        graphSink(graph).neighbors.push_back(Edge(0, INT_MAX, special));
-        graph[special].neighbors.push_back(Edge(0, INT_MAX, 1));
+        graphSink(graph).neighbors.push_back(Edge(INT_MAX, special));
+        graph[special].neighbors.push_back(Edge(INT_MAX, 1));
     }
     return  graph;
 }
