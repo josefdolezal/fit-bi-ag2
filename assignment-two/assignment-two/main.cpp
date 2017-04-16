@@ -16,14 +16,24 @@ using namespace std;
  Represents point in 3D space. May also be used to define area size.
  */
 struct Coordinates {
-    const int x;
-    const int y;
-    const int z;
+    int x;
+    int y;
+    int z;
 
     Coordinates(int x, int y, int z): x(x), y(y), z(z) {}
 
-    Coordinates(): x(0), y(0), z(0) {}
+    Coordinates(): x(-1), y(-1), z(-1) {}
 };
+
+ostream & operator << (ostream & lhs, const Coordinates & rhs) {
+    lhs << "(" << rhs.x << ", " << rhs.y << ", " << rhs.z << ")";
+
+    return lhs;
+}
+
+bool operator == (const Coordinates & lhs, const Coordinates & rhs) {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;
+}
 
 /**
  Edge from `owner` to destination. Keeps track of current flow.
@@ -31,9 +41,10 @@ struct Coordinates {
 struct Edge {
     int flow;
     int destination;
+    int start;
 
-    Edge(int flow, int destination):
-        flow(flow), destination(destination) {}
+    Edge(int flow, int start, int destination):
+        flow(flow), start(start), destination(destination) {}
 };
 
 /**
@@ -70,9 +81,6 @@ Coordinates readGraphAttributes();
  */
 Coordinates readCoordinates();
 
-/**
-
- */
 /**
  Reads list of infected cubes and stores them as neighbors of given start.
 
@@ -163,7 +171,17 @@ Cube & graphSink(Cube * graph);
  */
 Cube & cubeAtIndex(Cube * graph, int index);
 
-Cube * graphMinimalCovering(Cube * graph);
+void setCoordinators(Cube & cube, int x, int y, int z) {
+    cube.coords.x = x;
+    cube.coords.y = y;
+    cube.coords.z = z;
+}
+
+Cube * graphMinimalCovering(Cube * graph, Coordinates attributes);
+
+bool augumentingPathExists(Cube * graph, vector<Edge *> & path);
+
+bool dfs(Cube * graph, int start, int end, bool * visited, vector<Edge *> & path);
 
 int main(int argc, const char * argv[]) {
     Coordinates attributes = readGraphAttributes();
@@ -174,7 +192,8 @@ int main(int argc, const char * argv[]) {
                 readInfectedCubes(
                     createGraph(attributes),
                     attributes),
-                attributes))
+                attributes),
+            attributes)
     );
 
     return 0;
@@ -197,7 +216,10 @@ Coordinates expandIndex(int index, const Coordinates & system) {
 }
 
 Coordinates readGraphAttributes() {
-    return readCoordinates();
+    // Read coordinates must be increased by one
+    Coordinates coords = readCoordinates();
+
+    return Coordinates(coords.x + 1, coords.y + 1, coords.z + 1);
 }
 
 Coordinates readCoordinates() {
@@ -205,7 +227,7 @@ Coordinates readCoordinates() {
 
     cin >> x >> y >> z;
 
-    return Coordinates(x, y ,z);
+    return Coordinates(x-1, y-1, z-1);
 }
 
 Cube * createGraph(Coordinates size) {
@@ -214,33 +236,136 @@ Cube * createGraph(Coordinates size) {
     int nodeCount = size.x * size.y * size.z + 2;
     Cube * graph = new Cube[nodeCount];
 
-    for(int x = 0; x < size.x; ++x)
+    for(int z = 0; z < size.z; ++z)
         for (int y = 0; y < size.y; ++y)
-            for (int z = 0; z < size.z; ++z) {
-                Cube cube = cubeAtIndex(graph, index);
+            for (int x = 0; x < size.x; ++x) {
+                Cube & cube = cubeAtIndex(graph, index);
 
-                // Add all posible neighbors and flatten their index
+                setCoordinators(cube, x, y, z);
+
+                // Add all possible neighbors and flatten their index
                 if(z + 1 < size.z)
-                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x, y, z+1), size)));
+                    cube.neighbors.push_back(Edge(1, index, 2 + flattenCoordinates(Coordinates(x, y, z+1), size)));
                 if(z - 1 >= 0)
-                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x, y, z-1), size)));
+                    cube.neighbors.push_back(Edge(1, index, 2 + flattenCoordinates(Coordinates(x, y, z-1), size)));
                 if(y + 1 < size.y)
-                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x, y+1, z), size)));
+                    cube.neighbors.push_back(Edge(1, index, 2 + flattenCoordinates(Coordinates(x, y+1, z), size)));
                 if(y - 1 >= 0)
-                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x, y-1, z), size)));
+                    cube.neighbors.push_back(Edge(1, index, 2 + flattenCoordinates(Coordinates(x, y-1, z), size)));
                 if(x + 1 < size.x)
-                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x+1, y, z), size)));
+                    cube.neighbors.push_back(Edge(1, index, 2 + flattenCoordinates(Coordinates(x+1, y, z), size)));
                 if(x - 1 >= 0)
-                    cube.neighbors.push_back(Edge(1, flattenCoordinates(Coordinates(x-1, y, z), size)));
+                    cube.neighbors.push_back(Edge(1, index, 2 + flattenCoordinates(Coordinates(x-1, y, z), size)));
 
                 // Add global sink as neighbor if cube is on side of graph
                 if(isOnGraphSide(Coordinates(x, y, z), size)) {
-                    graphSink(graph).neighbors.push_back(Edge(INT_MAX, 1));
-                    cube.neighbors.push_back(Edge(INT_MAX, 1));
+                    cube.neighbors.push_back(Edge(INT_MAX, index, 1));
                 }
 
                 ++index;
             }
+
+    return graph;
+}
+
+bool augumentingPathExists(Cube * graph, vector<Edge *> & path, int size) {
+    bool visited[size];
+    for(int i = 0; i < size; ++i) visited[i] = false;
+
+    return dfs(graph, 0, 1, visited, path);
+}
+
+bool dfs(Cube * graph, int start, int end, bool * visited, vector<Edge *> & path) {
+    visited[start] = true;
+
+    if(start == end) {
+        return true;
+    }
+
+    Cube & node = graph[start];
+
+    for(auto & neighbor: node.neighbors) {
+        if(neighbor.flow > 0 && !visited[neighbor.destination]) {
+            if(dfs(graph, neighbor.destination, end, visited, path)) {
+                path.push_back(&neighbor);
+
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+void findReachable(Cube * graph, int start, int end, bool * visited) {
+    visited[start] = true;
+
+    Cube & node = cubeAtIndex(graph, start);
+
+    for (auto & neighbor: node.neighbors) {
+        if(neighbor.flow > 0 && !visited[neighbor.destination]) {
+            findReachable(graph, neighbor.destination, end, visited);
+        }
+    }
+}
+
+Cube * graphMinimalCovering(Cube * graph, Coordinates attributes) {
+    int size = attributes.x * attributes.y * attributes.z + 2;
+    vector<Edge *> path;
+    int space = 0;
+
+    while (augumentingPathExists(graph, path, size)) {
+        int pathFlow = INT_MAX;
+
+        for(auto edge: path) {
+            cout << edge->destination << " <- ";
+            pathFlow = min(pathFlow, edge->flow);
+        }
+
+        cout << endl;
+
+        // Decrease the flow in one direction and increase it in opposite
+        for(auto edge: path) {
+            Cube & oposite = cubeAtIndex(graph, edge->destination);
+
+            if(edge->start != 0)
+                edge->flow -= pathFlow;
+
+            for(auto & opositeEdge: oposite.neighbors) {
+                if(opositeEdge.destination == edge->start) {
+                    opositeEdge.flow += pathFlow;
+                    break;
+                }
+            }
+        }
+
+        cout << pathFlow << endl;
+
+        space += pathFlow;
+        path.clear();
+    }
+
+    cout << space << endl;
+
+    bool visited[size];
+    for (int i = 0; i < size; ++i) visited[i] = false;
+
+    findReachable(graph, 0, 1, visited);
+
+    for (int i = 0; i < size; ++i) {
+        if (visited[i] && i > 1)
+            cout << "saturated: " << expandIndex(i-2, attributes) << endl;
+    }
+
+    for (int i = 2; i < size; ++i) {
+        Cube & current = cubeAtIndex(graph, i);
+
+        for(Edge & neighbor: current.neighbors) {
+            if(visited[i] && !visited[neighbor.destination]) {
+                cout << neighbor.start << ", " << neighbor.destination << "," << neighbor.flow;
+            }
+        }
+    }
 
     return graph;
 }
@@ -250,16 +375,21 @@ void cleanup(Cube * graph) {
 }
 
 Cube * readInfectedCubes(Cube * graph, Coordinates size) {
-    Cube start = graphStart(graph);
+    Cube & start = graphStart(graph);
     int count;
 
     cin >> count;
 
     for (int i = 0; i < count; ++i) {
-        int infectedCube = flattenCoordinates(readCoordinates(), size) + 2;
+        Coordinates coords = readCoordinates();
 
-        start.neighbors.push_back(Edge(INT_MAX, infectedCube));
-        graph[infectedCube].neighbors.push_back(Edge(INT_MAX, 0));
+        int infectedCube = flattenCoordinates(coords, size) + 2;
+
+        cout << coords.x << " " << coords.y << coords.z << endl;
+        cout << flattenCoordinates(coords, size) << endl;
+
+        // Add edge from start to infected cube
+        start.neighbors.push_back(Edge(INT_MAX, 0, infectedCube));
     }
     return graph;
 }
@@ -270,10 +400,13 @@ Cube * readSpecialCubes(Cube * graph, Coordinates size) {
     cin >> count;
 
     for (int i = 0; i < count; ++i) {
-        int special = flattenCoordinates(readCoordinates(), size) + 2;
+        Coordinates coords = readCoordinates();
+        int special = flattenCoordinates(coords, size) + 2;
 
-        graphSink(graph).neighbors.push_back(Edge(INT_MAX, special));
-        graph[special].neighbors.push_back(Edge(INT_MAX, 1));
+        // Add edge from special cube to the sink
+        if(!isOnGraphSide(coords, size)) {
+            graph[special].neighbors.push_back(Edge(INT_MAX, special, 1));
+        }
     }
     return  graph;
 }
@@ -281,11 +414,6 @@ Cube * readSpecialCubes(Cube * graph, Coordinates size) {
 bool isOnGraphSide(const Coordinates coords, const Coordinates & system) {
     return coords.x == 0 || coords.y == 0 || coords.z == 0 || coords.x + 1 == system.x
     || coords.y + 1 == system.y || coords.z + 1 == system.z;
-}
-
-Cube * graphMinimalCovering(Cube * graph) {
-
-    return graph;
 }
 
 Cube & graphStart(Cube * graph) {
