@@ -1,4 +1,4 @@
-# BI-AG1: Algoritmy a grafy
+# BI-AG2: Algoritmy a grafy [![Build Status](https://travis-ci.com/josefdolezal/fit-bi-ag2.svg?token=AxpSW7yys3aiQpPG9zMW&branch=master)](https://travis-ci.com/josefdolezal/fit-bi-ag2)
 
 Repozitář věnovaný předmětu BI-AG2, vyučovaný na FIT ČVUT (@FIT_CTU).
 Seznam materiálů k ostatním předmětům je v [samostatném repozitáři](https://github.com/josefdolezal/fit-cvut).
@@ -9,8 +9,11 @@ Seznam materiálů k ostatním předmětům je v [samostatném repozitáři](htt
 
 ## Studijní materiály
 
+* [Semestrální výpisky z přednášek](notes) - zkompilované v záložce [releases](https://github.com/josefdolezal/fit-bi-ag2/releases)
+
 ## Domácí úlohy
-* [Modernizace železniční sítě](assignment-one)
+* [Modernizace železniční sítě](assignment-one) (hledání mostů v grafu)
+* [Únik radiace](assignment-two) (toky v sítích)
 
 ## Poznámka
 Uvedené zdrojové kódy nebo jejich části slouží pro inspiraci a jako demonstrace
