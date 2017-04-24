@@ -1,0 +1,49 @@
+\section{Přednáška 1}
+
+\subsection{Věta o souboru stupňů}
+
+\begin{description}
+    \item[Soubot stupňů grafu] Posloupnost stupňů deg($v_1$),\ldots, deg($v_2$).
+    Dva soubory jsou stejné, právě když existuje permutace jednoho ze souborů taková, že posloupnosti stupňů jsou po permutování stejné.
+    \item[Havlova věta] Nechť \range{d_1}{d_n} je seřazená posloupnost čísel o více než jednom prvku.
+    Tato posloupnost je souborem stupňů, právě když posloupnost vzniklá odebráním posledního prvku původní posloupnosti a následným odčítání jeho velikosti $i$ po jedné od $i$ předchozích vrcholů je validním souborem nebo pokud jsou všechny stupně souboru rovny $0$.
+
+\end{description}
+
+\subsection{DFS klasifikace hran}
+ 
+ Popisuje přiřazení typu hraně podle její polohy vůči DFS stromu. Pro hranu $\pair{u}{v}$ v orientovaném grafu existují 4 typy:
+
+ \begin{description}
+     \item[Stromová $\pair{u}{v}$] Stav $v$ je nenalezený.
+     \item[Zpětná $\pair{u}{v}$] Stav $v$ je otevřený.
+     \item[Dopředná $\pair{u}{v}$] Stav $v$ je uzavřený a $in(u) < in(v)$.
+     \item[Příčná $\pair{u}{v}$] Stav $v$ je uzavřený a $in(u) > in(v)$.
+ \end{description}
+
+ Pro neorientované grafy se situace zjednoduší na:
+
+  \begin{description}
+     \item[Stromová $\pair{u}{v}$] Hranu zkoumaná nejdříve jako stromová a následně jako zpětná.
+     \item[Zpětná $\pair{u}{v}$] Hrana zkoumaná nejdříve jako zpětná a následně jako dopředná.
+ \end{description}
+
+\subsection{2-souvislost, artikulace a mosty}
+
+\begin{description}
+    \item[Artikulace] Vrchol $v$ grafu $G$, pro který platí, že $G \setminus v$ má více souvislých komponent než $G$.
+    \item[Most] Hrana $e$ grafu $G$, pro kterou platí, že $G \setminus e$ má více souvislých komponent než $G$.
+    \item[Vrcholová 2-souvislost] Označuje graf, který má alespoň tři vrcholy, je souvislý a \textbf{neobsahuje} žádnou artikulaci.
+    \item[Hranová 2-souvislost] Ozačuje graf, který je souvislý 
+\end{description}
+
+\subsubsection{Mosty}
+
+\lemma{\textit{Hrana} není most právě když leží na alespoň jedné kružnici.}
+
+Pomocí této věty lze hledat mosty DFS algoritmem.
+Zpětné hrany nejsou mostem, v neorientovaných grafech tedy stačí zkoumat pouze ty stromové.
+Leží-li stromová hrana na kružnici, pak není mostem.
+Ověření pozice na kružnici se dělá pomocí předvýpočtu hodnoty $low(v)$, která definuje minimální hodnotu $in$ všech vrcholů, do nichž se lze dostat pomocí zpětné hrany.
+Tato hodnota tedy určuje, kam nejvíše (zpět) se lze dostat z daného podstromu.
+Je li $low(y) < in(y)$, hrana leží na kružnici.
