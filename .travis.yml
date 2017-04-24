@@ -1,19 +1,21 @@
 language: python
 dist: trusty
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended texlive-lang-czechslovak texlive-generic-extra lmodern latexmk latex-xcolor
+- sudo apt-get -qq update
+- sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra
+  texlive-fonts-extra dvipng texlive-latex-recommended texlive-lang-czechslovak texlive-generic-extra
+  lmodern latexmk latex-xcolor
 install:
-  - pip install pygments
+- pip install pygments
 script:
-  - latexmk -c
-  - latexmk -pdf
+- latexmk -c
+- latexmk -pdf
 deploy:
   provider: releases
   api_key:
-    secure: "LNsxQKTxofPdQ+uf3YcAT5wSMM/jCkWLL5IBSOcvURTDmNv4zhsk6kYbYg1q/ywj+YZ2dMgwi/eb43k8YedzY4YlhAGVgFFYHweGzu++dyjGmPkNP+6Je+1ccPy+WtBJWLYOUTF3gVBxWDfVYnpSE83ICcyitzjkAQhIX8BMUxFmNnBi3yjucxzXhzZGXrtdov5nw2cONmICTsrYZbKXrDtRX9AzZDhnBnuii6KGZQl8KO0NCawHvU0OtJOdT9SQSgntFpdkVu6iG3KWnHLXYpxAykIdI4kef/7363QMQ1t0oyNAtL6pnQkuBQ/ZTAllSjgw40Hokmx70XjRo3+WZJvkM+FVTBiEKH0Lnc6lFrTHQA+DfYvRuNX74Jeb1ve4L44QqQWxpn8gpyj0dDJz4s+RMugFXhnnrPw9SVBlTsco9CzK0XL1kqV/FYhDGb07mClmi+qYeB8piKez/W5mz2FjaWsl8hPIz9cJUm+kFHKhTs+QIWUw/01E6Bp1riH7gCxPXbsDqVXlG8GcW6UIqvJlAWOcvUcAidoPrS0uKhTzyi3VndijlRHL9kf3BD1kBd6XYQftZmooOLRyECVsYcoOGP0ECE9o3OTbDs10n/tpVMeOmY/+JrbIECoGnUVyH+1kfasmN5/s0gK4Lf+y2OlyIz8P2DMFrV6TTbnb4c8="
-  file:
-  - notes.pdf
+    secure: nXWVQixEWnFtCyltXJTN+O992KaXEB9vVGYmQf8WpiSL5CBltZ9cVH6EqQV7UlXc3zt1SFVhqCB5oWDdtBURnxxFywI3x5kQtbUiY2ky+y7iO0Z8QYJ6MXO/UsapgBZTfE3azRlWpotp6F2xUvpdf7prdcEl6UlOKBaCJY5+LkZZI+uRu+08QimtRuAqFaaKeKtSkmVVtfPuE+sRSsno+/znX/aXMpDGqhyeJpC/31x0ZAINpQNDSGS8P3hP1H9Y88hOazMFd/vjDXETkPUcsjueF9nUQsehlQrdEg24Oxn24a+ReSsoj/VOjN7wTULILK+vOiOdtbwaRM62Bzr9NXasvweeGO8zJnREGjzGk+E9wSFu6UtoXG1k7G5nUjufB+djRm8FAiWXtN5frnxwN0FOHhXHDHH2ql+loNTmFSaDoTJ55mcPCyoc7rK+x+IK5RgEDO1hR/+Le9o/2ws8QT1MiqMRtWkleaMbU93Tuk7jLNtTuka1AQoU/gWbtWr3Gso5QGS1mS8sKV8/7FnYp/yDgOKq0mA8LBlBws8O0RBYBsYcTT3NgVIddgshMkFzS0RQdUIu8Hwbjlft8Fex5Xp9EKmN3Ep5G5SnONKnMeyba8I70nQqkgtYeYZoY3WSFkwkSMF9MSXQaz+uZkCMeWTSY0/nV6YWKVIrZHV6vj0=
+  file: notes.pdf
   skip_cleanup: true
   on:
+    repo: josefdolezal/fit-bi-ag2
     tags: true
