@@ -1,0 +1,47 @@
+\section{Přednáška 2}
+
+\subsection{Charakterizace 2-souvislých grafů}
+
+\lemma{Každý 2-souvislý graf obsahuje kružnici.}
+
+\lemma{Graf G je 2-souvislý právě když jej lze vyrobit z libovolné jeho kružnice postupným přidáváním \textit{uší}.}
+
+\subsection{Silná souvislost a komponenty}
+
+Definice souvislosti se liší podle toho, zda je graf orientovaný:
+
+\begin{description}
+    \item[Souvislost] Graf je souvislý, právě když mezi každými dvěma vrcholy existuje neorientovaná cesta.
+    \item[Slabá souvislost] Graf je \textit{slabě} souvislý, právě když je souvislý po odstranění orientace hran.
+    \item[Silná souvislost] Graf je \textit{silně} souvislý, právě když existuje mezi každými vrcholy $\pair{u}{v}$ orientovaná cesta z $u$ do $v$ i opačně.
+\end{description}
+
+\lemma{Kondezací grafu G nazveme $cc(G)$, který má za vrcholy komponenty grafu G, hrana mezi těmito vrcholy vede právě když v původním G existuje hrana mezi danými komponentami. Kondenzaci můžeme nazvat grafem komponent.}
+
+\lemma{Graf komponent $cc(G)$ grafu $G$ je vždy acyklický.}
+
+Komponenty grafu můžeme rozdělit na \textit{zdrojové} a \textit{stokové}:
+
+\begin{description}
+    \item[Zdrojová] Komponentu nazvememe zdrojovou, pokud do ní nevede žádná hrana.
+    \item[Stoková] Komponenta, ze které nevedou žádné hrany do jiných komponent.
+\end{description}
+
+Pustíme-li DFS z vrcholu komponenty, která je \textit{stoková}, nalezneme právě tuto kompenetu a žádnou jinou
+To je zajištěno tím, že hrany mezi ostatními komponentami jsou obrácené.
+Vrchol ze stokové komponenty se hledá těžko, ale vrchol ze zdrojové lze najít pomocí toho, že bude mít maximální $out(v)$.
+
+Z tohoto důvodu se vytváří graf $G^T$, který má otočené hrany.
+Komponenty zůstanou nezměněné, jen se prohodí jejich vlastnosti (zdrojové na stokové a naopak).
+Následně stačí sestupně vybírat vrucholu s nejvyšší hodnoutou $out$ v $G^T$ a z nich pouštět následně DFS v původním $G$.
+
+Protože platí, že pokud vede hrana v $G^T$ z komponenty $C_1$ do komponenty $C_2$, mají všechny vrcholu $C_1$ hodnotu $out$ vyšší než všechny vrcholy $C_2$.
+
+\subsubsection{Algoritmus hledání silných komponent}
+
+\begin{enumerate}
+    \item Sestrojení grafu $G^T$.
+    \item $Z$ je (LIFO) zásobník kam se ukládají vrcholy v momentě uzavření.
+    \item Po projití všech vrcholů pomocí DFS se postupně odebírají vrcholy ze zásobníku $Z$.
+    \item Pokud má vrchol $v$ nedefinovanou hodnotu $komp$ pustí se z něho DFS v původním grafu a navštěvují se vrcholy s nedefinovanou $komp$. Hodnota se $komp$ se dodefinuje na $v$. Vrcholy stejné komponenty mají stejnou hodnotu $v$.
+\end{enumerate}

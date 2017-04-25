@@ -7,13 +7,19 @@
 \title{BI-AG2 - Algoritmy a grafy 2016/17}
 \author{Josef Dolezal}
 
+\newcommand{\lecture}[1]{
+    \newpage
+    \input{#1}
+}
+
 \newcommand{\graph}{$ G = (V, E) $}
 \newcommand{\vertexes}{$ V = (v_1, \ldots, v_n) $}
 \newcommand{\range}[2]{$#1, \ldots, #2$}
 \newcommand{\gset}[2]{$\{ \range \}$}
 \newcommand{\pair}[2]{(u, v)}
 
-\newcommand{\lemma}[1]{\textbf{Věta.} #1}
+\newcommand{\lemma}[1]{\par \noindent \textbf{Věta.} #1 \medskip}
+
 
 \begin{document}
 
@@ -23,8 +29,8 @@
 
 \tableofcontents
 
-\newpage
+\lecture{notes/01-2connected-graphs-and-bridges.tex}
 
-\input{notes/01-2connected-graphs-and-bridges.tex}
+\lecture{notes/02-2connected-graphs-and-strong-connected-graphs.tex}
 
 \end{document}
