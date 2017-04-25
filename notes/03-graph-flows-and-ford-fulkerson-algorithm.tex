@@ -1,0 +1,55 @@
+\section{Přednáška 3}
+
+\subsection{Toky v sítích}
+
+\begin{description}
+    \item[Síť] Čtveřice $(G, z, s, c)$, kde $\graph$ je orientovaný graf, $z$ a $s$ jsou dva různé vrcholy (zdroj a stok) a $c$ je funkce přiřazující hraně nezáporné ohodnocení.
+    \item[Tok] Každá funkce $ f: E \to \mathbb{R}_0^+ $ přiřazující každé hraně nezáporné ohodnocení o velikosti nejvíše kapacity hrany.
+\end{description}
+
+Pro všechny vrcholy kromě zdroje a stoku platí první \textit{Kirchhoffův zákon}, tedy že součet toků vstupujících do vrcholu $v$ musí být roven velikosti toku vycházejícího z vrcholu.
+
+\subsubsection{Řezy}
+
+\begin{description}
+    \item[Řez] Množina hran $R$ mezi zdrojem a stokem, $R \subseteq E(G)$ taková, že v grafu $G \setminus R$ neexistuje žádná orientovaná cesta ze zdroje do stoku.
+    \item[Elementární řez] Množina hran jdoucích z množniny $A$ do množniny $B$ (nikoliv naopak), kde $A$ a $B$ jsou disjunktní množiny vrcholů a $z \in A$ a $s \in B$.
+\end{description}
+
+\lemma{(Vlastnost 1) Pro každou síť se velikost maximálního toku rovná kapacitě minimálního řezu.
+    Tato vlastnost se nazývá \textbf{Hlavní věta o tocích}.
+}
+
+\lemma{(Vlastnost 2) Každý řez obsahuje elementární řez.}
+
+\lemma{(Vlastnost 3) Každý v \textit{inkluzi} minimální řez $R$ je elementární.
+    \textit{V inkluzi minimální} znamená, že po odebrázní libovolné hrany $e$ už $R$ nebude řezem.
+}
+
+\subsubsection{Nasycená cesta}
+
+Cestou v síti se rozumí posloupnost navzájem rozdílných vrcholů ve které se ignoruje orientace hran.
+
+\begin{description}
+    \item[Nasycená cesta] Cesta se vzhledem k toku nazývá nasycená pokud pro nějakou hranu $e_i$ orientovanou po směru platí, že její tok je roven kapacitě nebo pokud je orientovaná v protisměru a její tok je $0$.
+    \item[\textbf{Ne}nasycená cesta] Cesta, která není nasycená.
+    Takové cestě také říkáme \textit{zlepšující}.
+    Je to taková cesta, podél níž se dá tok zvýšit.
+\end{description}
+
+\lemma{Tok v síti je maximální, právě když je nasycený. Pro každý maximální tok existuje řez takový, že velikost toku $w(f)$ je rovna kapactě řezu.}
+
+\subsubsection{Ford-Fulkersonův algoritmus}
+
+Díky platnosti hlavní větě o tocích (Maximální tok je roven minimálnímu řezu) lze pomocí jednoduchého algoritmu nalézt maximální tok.
+
+\begin{enumerate}
+    \item Všem hranám přiřaď nulový tok: $\forall e: f(e) = 0$.
+    \item Pokud existuje zlepšující cesta $P$:
+    \begin{enumerate}
+        \item Najdi minimální hodnotu, o kterou lze tok na $P$ zvýšit.
+        \item Vylepši cestu $P$ o nalezenou hodnotu (tím se saturuje alespoň jedna hrana).
+        \item Opakuj krok 2.
+    \end{enumerate}
+    \item Stávající $f$ je maximálním tokem.
+\end{enumerate}
