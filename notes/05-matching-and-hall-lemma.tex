@@ -1,0 +1,41 @@
+\section{Přednáška 5}
+
+\subsection{Párování}
+
+Párování v grafu je množina hran \(M \subseteq E(G)\) taková, že každý vrchol grafu $G$ patří nejvíše do jedné hrany z $M$.
+Neboli že žádné dvě hrany nemají společný vrchol.
+
+Párování se nazývá \textbf{perfektní}, pokud má právě \(|V(G)| / 2 \) hran, tedy každý vrchol patří do právě jedné hrany.
+
+\begin{description}
+    \item[Bipartitní graf] Graf $\graph$, jehož množinu vrcholů lze rozdělit na dvě části $X$ a $Y$ tak, že pro každou hranu $\{u,v\} \in E$ platí, že $u \in X$ a $v \in Y$ nebo naopak.
+    Části $X$ a $Y$ se nazývají \textit{partity}.
+\end{description}
+
+\subsubsection{Algoritmus hledání párování}
+
+Párování v bipartitních grafech se nejčastěji hledá pomocí toků.
+Pro zadaný graf\newline $G=(X \cup Y,E)$, kde $X$ a $Y$ jsou partity $G$ se nejdříve všechny hrany zorientují z $X$ do $Y$ a přidají se nové vrcholy pro zdroj a stok.
+Kapacity všem hranám se nastaví na $1$.
+
+\lemma{Ke každému párování $M$ v $G$ existuje celočíselný tok $f$ ve zkonstruované síti takový, že \(|M| = w(f)\).}
+
+\lemma{Ke každému celočíselnému toku $f$ v zkonstruované síti existuje párování $M$ v $G$ takové, že $|M| = w(f)$.}
+
+Pomocí algoritmu pro hledání maximálního toku (Ford-Fulkersonův algoritmus) lze párování ve zkonstruované síti nalézt v čase \(O(n\cdot{}m)\).
+
+\subsection{Systémy různých reprezentantů}
+
+Nechť $X$ je konečná množina.
+Množinu $M$, která se skládá z podmnožin množiny $X$ (je to množina množin).
+SRR je množina $S = \{x_1, x_2, \ldots\}$ různých prvků množiny $X$, přičemž pro každé $i$ platí, že $x_i$ je prvkem $M_i$.
+
+\subsubsection{Hallova věta}
+
+SRR pro $M$ existuje, právě když libovolných $n$ množin z $M$ má alespoň $n$ prvků.
+Můžeme tedy z $M$ vybírat libovolné podmnožiny a pokaždé lze najít pro každou z těchto podmnožin jiného zástupce.
+
+\subsubsection{Důsledky Hallovy věty}
+
+\lemma{V bipartitním grafu grafu s partitami $V_1$ a $V_2$ s neprázdnou množinou hran takovém, že pro libovolné $x \in V_1$ a $y \in V_2$ platí \(\text{deb}_B x \geq \text{deg}_B y\)} existuje párování velikosti alespoň $|V_1|$.
+Toto platí, protože množina $V_2$ musí mít nutně více vrcholů.
