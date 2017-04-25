@@ -1,0 +1,52 @@
+\section{Přednáška 4}
+
+\subsection{Míra souvislosti grafu}
+
+\begin{description}
+    \item[Hranový řez] Množina hran $F \subseteq E$ grafu $\graph$, taková, že odebereme-li z $G$ všechny hrany $F$, bude nesouvislý.
+    \item[Vrcholový řez] Množina vrcholů $A \subset V$ grafu $\graph$ takovám že $G$ bez těchto vrcholů je nesouvislý.
+\end{description}
+
+\subsubsection{Hranová k-souvislost}
+
+\begin{description}
+    \item[Hranová k-souvislost] Označuje graf, ve kterém neexistuje hranový řez velikosti nejvýše $k-1$.
+    Tedy je souvislý právě když řez obsahuje alespoň $k$ hran.
+\end{description}
+
+Obdobně lze zadefinovat i vrcholovou \textit{k-souvislost}.
+Ta platí má-li graf alespoň $k+1$ vrcholů a neexistuje v něm vrcholový řez velikosti nejvíše $k-1$.
+Tedy aby byl vrcholově \textit{k-souvislý}, minimální počet vrcholů, které je potřeba odebrat aby byl nesouvislý je $k$.
+
+\medskip
+
+Hranovou souvislost $k_e$ lze tedy definovat jako nejmenší hranový řez.
+Vrcholovou souvislost $k_v$ lze definovat jako nejmenší vrcholový řez.
+
+\lemma{Pro každý graf $G$ a libovolnou hranu $e$ platí}
+
+\[
+    k_e(G) - 1 \leq k_e(G \setminus e) \leq k_e(G) \text{.}
+\]
+
+Obdobné tvrzení platí i pro vrcholovou souvislost.
+
+\lemma{V každém grafu také platí}
+
+\[
+    k_v(G) \leq k_e(G) \text{.}
+\]
+
+Nerovnost lze odvodit z \uv{motýlkového} grafu.
+
+\subsection{Ford-Fulkersonova věta}
+
+\lemma{Pro každý graf $G$ a každé přirozené $t$ palatím že \(k_e \geq k\), právě když mezi každými dvěma různými vrcholy $u$ a $v$ existuje alespoň $t$ hranově (úplně) disjunktních cest.}
+
+\subsection{Mengerova věta}
+
+Obdobné tvrzení jako \textit{Ford-Fulkersonova věta}, platí ale pro vrcholovou souvislost.
+
+\lemma{Pro každý graf $G$ a každé přirozené $t$ platí, že \(k_v(G) \geq t\), právě když mezi každými dvěma různými vrcholy $u$ a $v$ existuje alespoň $t$ cest, které jsou až na vrcholy $u$ a $v$ disjunktní.}
+
+Mezi každými dvěma vrcholy tedy můsí být alespoň $t$ různých cest, ktré sdílejí jen koncové vrcholy, jinak žádné.
