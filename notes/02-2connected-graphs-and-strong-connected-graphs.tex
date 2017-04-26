@@ -27,15 +27,15 @@ Komponenty grafu můžeme rozdělit na \textit{zdrojové} a \textit{stokové}:
     \item[Stoková] Komponenta, ze které nevedou žádné hrany do jiných komponent.
 \end{description}
 
-Pustíme-li DFS z vrcholu komponenty, která je \textit{stoková}, nalezneme právě tuto kompenetu a žádnou jinou
+Pustíme-li DFS z vrcholu komponenty, která je \textit{stoková}, nalezneme právě tuto kompenetu a žádnou jinou.
 To je zajištěno tím, že hrany mezi ostatními komponentami jsou obrácené.
 Vrchol ze stokové komponenty se hledá těžko, ale vrchol ze zdrojové lze najít pomocí toho, že bude mít maximální $out(v)$.
 
 Z tohoto důvodu se vytváří graf $G^T$, který má otočené hrany.
 Komponenty zůstanou nezměněné, jen se prohodí jejich vlastnosti (zdrojové na stokové a naopak).
-Následně stačí sestupně vybírat vrucholu s nejvyšší hodnoutou $out$ v $G^T$ a z nich pouštět následně DFS v původním $G$.
+Následně stačí sestupně vybírat vrucholy s nejvyšší hodnotou $out$ v $G^T$ a z nich pouštět následně DFS v původním $G$.
 
-Protože platí, že pokud vede hrana v $G^T$ z komponenty $C_1$ do komponenty $C_2$, mají všechny vrcholu $C_1$ hodnotu $out$ vyšší než všechny vrcholy $C_2$.
+Protože platí, že pokud vede hrana v $G^T$ z komponenty $C_1$ do komponenty $C_2$, mají všechny vrcholy $C_1$ hodnotu $out$ vyšší než všechny vrcholy $C_2$.
 
 \subsubsection{Algoritmus hledání silných komponent}
 
