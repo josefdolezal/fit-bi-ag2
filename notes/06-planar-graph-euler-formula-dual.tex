@@ -1,0 +1,56 @@
+\section{Přednáška 6}
+
+\subsection{Rovinné nakreslení grafu}
+
+\begin{description}
+    \item[Oblouk] Prosté, spojité zobrazení $f$ intervalu \(\langle 0, 1 \rangle\) do roviny $\mathbb{R}^2$.
+    Body $f(0)$ a $f(1)$ se nazývají \textit{koncové}, ostatní jsou \textit{vnitřní}.
+    Toto zobrazení má tvar $\gamma$.
+    \item[Nakreslení garfu] Dvojice zobrazení $(b, \gamma)$ grafu $\graph$ taková, že každý vrchol má přiřazený bod v rovině $b(v)$.
+    Každá hrana mezi $u$ a $v$ má přiřazený oblouk $\gamma(e)$ s koncovými body $u$ a $v$.
+    Vrcholy nejsou zobrazeny přes sebe ($b(v)$ je prosté).
+    Vrchol není vnitřním bodem žádného oblouku.
+    \item[Rovinné nakreslení] Nakreslení, ve kterém se žádné dvě hrany neprotínají (nemají společný vnitřní bod).
+    \item[Rovinný graf] Graf, pro který existuje alespoň jedno rovinné nakreslení.
+\end{description}
+
+\subsection{Stěny, Eulerova formule}
+
+\begin{description}
+    \item[Stěna grafu] Stěny jsou souvislé oblasti roviny po vynechání všech bodů nakreslení.
+    Stěny, které nezasahují do nekonečna jsou vnitřní, jedna neomezená stěna se nazývá vnější.
+\end{description}
+
+\subsubsection{Jordanova křivka}
+
+Topologická kružnice (\textit{jednoduchá uzavřená křivka}) je podmnožina roviny, zobrazení tvaru oblouku, které je prosté na intervalu $(0, 1\rangle$ a platí, že $f(0) = f(1)$.
+
+\lemma{\textit{Jordanova věta o kružnici.} Topologická křivka rozděluje rovinu na omezenou (vnitřní stěnu) a druhá neomezená a křivka je hranicí obou těchto stěn.}
+
+\lemma{\textit{Eulerova formule.} Nechť $\graph$ je souvislý rovinný a $s$ je počet jeho stěn, pak
+\[
+    |V|-|E| + s = 2\text{.}
+\]}
+
+Důsledkem \textit{Eulerovy formule} je, že počet stěn v nějakém rovinném nakreslení je
+\[
+    s = 2 - |V| + |E|\text{.}
+\]
+
+Podle \textit{Eulerovy formule} má kružnice právě dvě stěny, tedy \textit{Jordanova věta} je jen jejím speciálním případem.
+
+\lemma{Nechť $\graph$ je rovinný graf a \(|V| \geq 3\), pak \(|E| \leq 3|V| - 6\).}
+
+Důsledkem této věty je, že každý rovinný graf má stupeň \textit{nejvýše} 5.
+
+\subsubsection{Kuratowského věta}
+
+\lemma{Graf $G$ je rovinný, právě když žádný jeho podgraf není izomorfní s $K_5$ nebo $K_{3,3}$}.
+
+\subsubsection{Duál rovinného grafu, multigrafy}
+
+Multigrafy umožňují, aby mezi dvěma vrcholy existovala více než jedna hrana a nebo aby existovala hrana jejíž konce jsou v téže vrcholu (\textit{smyčka}).
+
+\begin{description}
+    \item[Duál rovinného grafu] Graf, který vznikne tak, že za každou stěnu se přidá vrchol a hrany se přidají skrz každou hranici k sousední stěně (tedy mohou vzniknout smyčky).
+\end{description}
