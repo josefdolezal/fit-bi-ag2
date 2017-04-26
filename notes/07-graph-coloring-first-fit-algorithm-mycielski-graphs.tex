@@ -1,0 +1,50 @@
+\section{Přednáška 7}
+
+\subsection{Barvení grafu}
+
+\begin{description}
+    \item[Barevnost grafu] $\graph$ je graf a $k$ je nějaké číslo celé nezáporné číslo.
+    obarvení grafu $k$ barvami je takové zobrazení, které každé hraně $\{u, v\} \in E$ přiřadí $b(u)$ a $b(v)$ takové, že $b(v_i) \in \{1, \dots, k\}$.
+    Tedy dva sousední vrcholy mají jinou barvu.
+    Barevnost $\chi(G)$ je nejmenší ze všech $k$, kterými lze graf obarvit.
+\end{description}
+
+Platí, že $\chi(P_n) = 2$, $\chi(K_n) = n$, $\chi(C_{2n}) = 2$ a $\chi(C_{2n+1}) = 3$.
+
+Graf má barevnost 2 právě když je bipartitní a má alespoň jednu hranu.
+
+\subsection{First-fit algoritmus}
+
+Algoritmus na vstup vezme vrcholy $(v_1, \ldots, n)$ a pro každý se podívá jeho sousedy.
+Podle barevnosit sousedů obarví sebe první volnou barvou, pokud je první volná barva větší na než aktuální barevnost, inkrementuje barevnost.
+
+\subsection{Degenerované grafy}
+
+\lemma{Graf je \textit{d-degenerovaný} právě když pro každý jeho podgraf existuje vrchol nejvýše stupně $d$.}
+
+\begin{description}
+    \item[Degenerovanost grafu] Udává nejmenší $d$ takové, že graf je \textit{d-degenerovaný}.
+\end{description}
+
+\lemma{Každý \textit{d-degenerovaný} graf lze obarvit $d+1$ bravami.}
+
+\lemma{Každý rovinný graf lze obarvit 4 barvami.}
+
+\subsection{Klikovost}
+
+\begin{description}
+    \item[Klika grafu] Podgraf grafu $G$ izomorfní s něajakým úplným grafem.
+    \item[Nezávislá množina] Množina vrcholů, které mezi sebou navzájem nemají žádnou hranu.
+    \item[Klikovost] $\omega(G)$ je velikost největší kliky.
+    \item[Nezávislost] $\alpha(G)$ je velikost největší nezávislé množiny.
+\end{description}
+
+\lemma{Pro každý graf platí, že barevnost je alespoň klikovost grafu, tedy $\chi(G) \geq \omega(G)$.}
+
+\subsection{Mycielskiho konstrukce grafu}
+
+Velké kliky nejsou jediným důvodem pro velkou barevnost, např. Mycielskiho graf má nízkou klikovost, ale vysokou barevnost.
+Sestrojí se tak, že se vezme graf $G$ a jeho vrcholy $(v_1, \dots, v_n)$ se \uv{zkopírují} a přidají se pro ně hrany do stejných vrcholů, jako měly jejich vzory.
+Navíc se přidá nový vrchol, se kterým se kopie také spojí.
+
+Barevnost takového grafu je $\chi(G) + 1$. 
