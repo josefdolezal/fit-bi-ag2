@@ -13,3 +13,77 @@ Algoritmus funguje tak, že nejprve zvolí $k$, následně pro každé dva vrcho
 Hrany, které nelze využít (neexistují) jsou ohodnoceny jako $+\infty$.
 
 \lemma{Paměťová náročnost FW pro graf bez cyklů je $\Theta(n^2)$, časová náročnost je $\Theta(n^3)$.}
+
+\subsection{Fibonacciho haldy}
+
+Pro vyhledání cest lze využít i \textit{Dijkstrův algoritmus}.
+Ten zabere $O(n \cdot (n+m) \cdot \log n)$, což je efektivní pro grafy s málo hranami, ale neefektivní pro téměř úplné grafy.
+
+Pro zrychlení lze využít \textit{Fibonacciho haldy}.
+Ty fungují podobně jako binomiální haldy s tím, že některé drahé operace lze odložit.
+Stjně jako v BH je nutné dodržet haldové uspořádání.
+Změny FB oproti BH:
+
+\begin{itemize}
+    \item Halda může obsahovat více stromů stejného řádu.
+    \item Struktura stromů je volnější.
+\end{itemize}
+
+Pro tento typ haldy se určuje:
+
+\begin{description}
+    \item[Řád vrcholu] Počet synů tohoto vrcholu.
+    \item[Řád stromu $T$] Řád kořene $T$.
+\end{description}
+
+\subsubsection{Podporované operace}
+
+\begin{description}
+    \item[\texttt{GetMin}] Vrací ukazatel na nejnižší prvek.
+    Jeho hodnota se udržuje průběžně.
+    \item[\texttt{Merge}] Zřetězí spojové seznamy obou hald a přepojí minimový ukazatel, pokud je potřeba.
+    \item[\texttt{Insert}] Vyrobí haldu s jedním vrcholem a tu spojí s požadovanou haldou.
+\end{description}
+
+Pomocí těchto operací by halda mohla zdegenerovat a ztratit své vlastnosti.
+To se řeší pomocí \textit{konsolidace}, která sloučí stromy tak, aby jich bylo v seznamu co nejméně.
+\textit{Konsolidace} se spouští během operace \texttt{ExtractMin}.
+
+\subsubsection{Operace \texttt{ExtractMin}}
+
+Tato operace odtrhne a vrátí minimální kořen.
+Jeho syny spojí do haldy a tu sloučí s původní haldou algoritmem \texttt{Merge}.
+Následně proběhne \textit{konsolidace}.
+
+\subsubsection{Konsolidace}
+
+Při konsolidaci se vezmou všechny stromy rozdělí do $2\ceil{\log n} + 1$ přihrádek, kde v přihrádce $i$ budou všechny stromy řádu $i$.
+Následně se z přihrádky odebírají stromy po dvou a spojují se algoritmem \texttt{MergeTree} a přesunou se do přihrádky $i+1$.
+
+Algoritmus \texttt{MergeTree} funguje podobně jako u BH, tedy porovnají se kořeny a větší se dá jako potomek nižšího.
+Takto se postupuje, dokud není v každé přihrádce pouze jeden strom.
+Náseledně se zbylé stromy spojí.
+
+\subsubsection{Operace \texttt{DecreaseKey}}
+
+Tato operace umožňuje snížení klíče nějakého prvku stromu.
+To ale může poškodit haldové uspořádání.
+Oproti BH, kde se změna probublávala výše se zde snížený kořen včetně podstromu odpojí a vloží na konec haldy.
+
+Tímto způsobem by strom mohl časem zdegenrovat.
+Proto se prvky stromu značí.
+Každý kořen, jemuž byl odříznut syn se označí.
+Pokud byl odtržen syn vrcholu $v$, který byl již dříve označený, odtrhne se také strom zakořeněný ve $v$ včetně $v$.
+Tato změna probublává až ke kořenu.
+Při zařazení odtrženého stromu zpět do haldy se označení ruší.
+
+\subsubsection{Operace \texttt{Delete}}
+
+Tato operace umožňuje z haldy odebrat libolný prvek.
+Ten se odebere tak, že se jeho klíč nastaví na hodnotu $-\infty$ a následně se zavolá \texttt{ExtractMin}.
+
+\subsection{Analýza \textit{Fibonacciho haldy}}
+
+\lemma{Po každé operaci je na výstupu korektní FH a platí, že je-li $T$ z haldy řádu $k$, pak má alespoň $F_{k+2}$ prvků.}
+
+\lemma{Řád každého stromu FH je nejvýše $2\ceil{\log_2 n}$}.
