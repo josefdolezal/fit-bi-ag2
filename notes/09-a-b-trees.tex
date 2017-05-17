@@ -27,3 +27,16 @@ Konkrétní ukázka $\pair{a}{b}$ je vidět v obrázku \ref{fig:2-3-tree}.
 \image[0.3\textwidth]{2-3-tree}{(2, 3) vyhledávací strom}{2-3-tree}
 
 \lemma{(a, b)-strom s $n$ klíči má hloubku $\Theta(\log n)$.}
+
+\subsection{Vkládání do stromu}
+
+Při vkládání se nejprve najde místo, na které prvek patří (při prohledávání se dorazí do listu).
+Nyní se vloží prvek do otce listu a přidá se mu nový list.
+Pokud stále platí podmínka s nejvýše $(b-1)$ klíči, vložení je hotovo.
+
+Pokud podmínka splněna není, rozdělí se klíče na tři části: prostřední klíč, levá a pravá část.
+Prostřední klíč se vloží do rodiče kde se postupuje stejně.
+Takto se změna probublává až ke kořeni.
+Je-li přeplněn i kořen, vytváří se nový kořen s jediným klíčem a dvěma syny.
+
+\image{2-3-tree-insertion}{Vložení prvku do (2, 3)-stromu}{2-3-tree-insertion}
