@@ -1,0 +1,29 @@
+\section{Stromy s více klíči ve vrcholech}
+
+\subsection{(a, b) stromy}
+
+Zakořeněný vyhledávací strom s určeným pořadím synů každého vrcholu.
+Vrcholy se dělí na \textit{vnitřní} a \textit{vnější}.
+
+\begin{description}
+    \item[Vnitřní] Obsahují libovolný nenulový počet klíčů.
+    Klíče jsou seřazeny vzestupně a od jejich počtu se odvíjí počet potomků.
+    Klíče slouží jako oddělovače hodnot v podstromech.
+    \item[Vnější] Neobsahují žádná data ani nemají žádnou hodnotu.
+    Reprezentují pouze listy, implementovat je lze pomocí \texttt{null} ukazatelů.
+\end{description}
+
+(a,b) stromy jsou degenerované obecné vyhledávací stromy s parametry $a, b$.
+Pro tyto parametry platí $a \geq 2$, $b \geq 2a - 1$.
+Dále platí:
+
+\begin{itemize}
+    \item Každý kořen má 2 až $b$ synů, ostatní vrcholy $a$ až $b$ synů.
+    \item Všechny listy jsou ve stejné hloubce.
+\end{itemize}
+
+Konkrétní ukázka $\pair{a}{b}$ je vidět v obrázku \ref{fig:2-3-tree}.
+
+\image[0.3\textwidth]{2-3-tree}{(2, 3) vyhledávací strom}{2-3-tree}
+
+\lemma{(a, b)-strom s $n$ klíči má hloubku $\Theta(\log n)$.}
