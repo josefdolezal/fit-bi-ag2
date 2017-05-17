@@ -1,0 +1,15 @@
+\section{Přednáška 8}
+
+\subsection{Floydův-Warshallův algoritmus}
+
+Floyd-Warshallův algoritmus slouží k nalezení cesty mezi libovolnými dvěma vrcholy grafu $\graph{}$, který neobsahuje záporné cykly.
+Algoritmus pracuje tak, že pro každé dva vrcholy hledá nejkratší cestu skrz ostatní vrcholy.
+Při hledání vždy vzniká trojúhelník, jako cesta z $i$ do $j$ se vybere buď cesta $i \rightarrow j$ nebo $(i \rightarrow k + k \rightarrow k)$ podle toho, která je kratší.
+Vzorec je znázorněn na obrázku \ref{fig:floyd-warshall-triangle}.
+
+\image[0.3\textwidth]{floyd-warshall-triangle}{FW: Výběr nejkratší cesty}{floyd-warshall-triangle}
+
+Algoritmus funguje tak, že nejprve zvolí $k$, následně pro každé dva vrcholy zkouší, trojúhelníkový výpočet, tedy jestli se vyplatí jít přímo nebo se vyplatí jít přes $k$.
+Hrany, které nelze využít (neexistují) jsou ohodnoceny jako $+\infty$.
+
+\lemma{Paměťová náročnost FW pro graf bez cyklů je $\Theta(n^2)$, časová náročnost je $\Theta(n^3)$.}
