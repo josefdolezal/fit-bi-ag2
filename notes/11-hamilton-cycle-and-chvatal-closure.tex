@@ -28,3 +28,41 @@ Chvátalovým uzávěrem je úplný graf, který jistě Hamiltonovský je.
 Tedy musí být Hamiltonovský i původní graf.
 
 \lemma{(Diracova věta) Nechť graf $G$ má alespoň 3 vrocholy a pro každý vrchol z $v \in V(G)$ platí, že deg $v \geq \frac{|V(G)|}{2}$. Takový graf je Hamiltonovský.}
+
+\subsection{Problém obchodního cestujícího -- TSP}
+
+Problém TSP je úlohou na nalezení Hamiltonovské kružnice v ohodnoceném grafu s minimálním součtem vah.
+Tento problém je algoritmicky obtížný.
+Získáme-li navíc na vstup graf a hodnotu \textit{L} a máme-li zjistit, jestli součet vah je menší než \textit{L}, je tento problém NP-úplný.
+
+Pro upravené zadání lze aproximovat řešení, které bude nejhůře dvakrát horší než nejlepší.
+Tento algoritmus funguje na TSP s trojúhelníkovou nerovností.
+
+\subsection{Aproximační algoritmus pro TSP s trojúhelníkovou nerovností.}
+
+Vstupem algortimu je úplný graf $K_n$ s nezáporným ohodnocením hran $w$.
+Pro $w$ platí, trojúhelníková nerovnost, tedy pro každé tři hrany ${x, y}$, ${y, z}$ a ${x, z}$ platí:
+
+$$
+    w({x,y}) + w({y, z}) \geq w({x, z}).
+$$
+
+\image[.35\textwidth]{tsp-triangle}{TSP s trojúhelníkovou nerovností}{tsp-triangle}
+
+\subsubsection{Popis algoritmu}
+
+\begin{enumerate}
+    \item Nalezení minimální kostry T.
+    \item Graf $K_n$ včetně kostry se symetricky zorientuje se zachováním ohodnocení hran.
+    Vznikne podgraf $\vec{T}$, který lze nakreslit jedním tahem.
+    \item Dokud existuje vrchol $u$ s alespoň dvěma vstupními hranami, nahrazují se hrany ${v, u}$, ${u, w}$ hranou ${v, w}$.
+    \item Výsledkem je množina S.
+\end{enumerate}
+
+\lemma{Algoritmus je polynomiální a vrátí trasu S, jejíž délka je
+$$
+ w(S) = \sum_{e \in S} w(e) \leq 2 \cdot (\mathrm{best\,TSP)}.
+$$
+}
+
+\image{tsp-progress}{Postup řešení TSP s trojúhelníky}{tsp-progress}
