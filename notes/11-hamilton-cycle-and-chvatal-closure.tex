@@ -1,0 +1,30 @@
+\section{Přednáška 11}
+
+\subsection{Hamiltonovské kružnice}
+
+\begin{description}
+    \item[Hamiltonovská kružnice] Kružnice obsahující všechny vrcholy grafu.
+    \item[Hamiltonovská cesta] Cesta obsahující všechny vrcholy grafu.
+    \item[Hamiltonovský graf] Graf obsahující Hamiltonovskou kružnici.
+\end{description}
+
+Otázka existence této kružnice je NP-úplný problém.
+
+\subsection{Chvátalův uzávěr}
+
+\lemma{Graf má Hamiltonovskou kružnici, právě když jí má Chvátalův uzávěr grafu.}
+
+Chvátalův uzávěr je graf, který z původního grafu vznikne algoritmem:
+Pokud v grafu existují dva různé vrcholy $u$ a $v$, mezi kterými se nenachází hrana a součet jejich stupňů je větší než počet vrcholů, přidá se tato hrana do grafu.
+Takto se pokračuje, dokud takové vrcholy existují.
+
+Výsledný graf se nazývá Chátalovým uzávěrem značeným $[G]$.
+
+\lemma{Chvátalův uzávěr je určen jednoznačně.}
+
+\lemma{Nechť graf G má alespoň 3 vrcholy a pro každé dva vrcholy $u,v \in V(G)$ platí, že graf neobsahuje hranu ${u,v}$, pokud součet stupňů $u$ a $v$ je větší než celkový počet vrcholů. Takový graf je Hamiltonovský.}
+
+Chvátalovým uzávěrem je úplný graf, který jistě Hamiltonovský je.
+Tedy musí být Hamiltonovský i původní graf.
+
+\lemma{(Diracova věta) Nechť graf $G$ má alespoň 3 vrocholy a pro každý vrchol z $v \in V(G)$ platí, že deg $v \geq \frac{|V(G)|}{2}$. Takový graf je Hamiltonovský.}
