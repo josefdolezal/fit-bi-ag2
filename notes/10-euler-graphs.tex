@@ -11,8 +11,38 @@ Ukázka eulerovského grafu je vidět na obrázku \ref{fig:euler-graph}.
     \item[Tah] Sled v grafu, kde se neopakují hrany.
     \item[Uzavřenost tahu] Tah končící ve stejném vrcholu kde začíná se nazývá uzavřený.
     Jinak se nazývá otevřený.
-    \item[Eulerovský] Tah, který prochází všechny vrcholy a všechny hrany.
+    \item[Eulerovský tah] Takový, který prochází všechny vrcholy a všechny hrany.
     \item[Eulerovský graf] Graf, ve kterém existuje uzavřený eulerovský tah.
 \end{description}
 
 \lemma{Graf je eulerovský právě tehdy, když je souvislý a stupeň každého vrcholu je sudý.}
+
+\subsection{Hledání tahu}
+
+Hledání tahu se provádí ve dvou krocích.
+V prvním kroku se z libovolného vrcholu $v$ nalezne uzavřený tah (začíná i končí ve $v$).
+Při hledání tahu platí, že vycházím z vrcholu $v$ po libovolné hraně.
+Tuto hranu odeberu ($v$ má nyní lichý stupeň).
+Jeho soused měl sudý stupeň, po odebrání hrany tedy určitě platí, že mu zbývá ještě alespoň jedna ohrana, po které lze z vrcholu odejít.
+Tento proces se může zastavit pouze ve vrcholu $v$, protože pro ten jediný neplatí podmínka se sudým počtem hran při vstupu do vrcholu.
+
+Ve druhé části se zjišťuje úplnost tahu.
+Prochází se jednotlivé vrcholy získaného tahu a kontroluje se, zda mu ještě nezbývají nějaké hrany.
+Pokud na takový vrchol narazíme, přerušíme kontrolu úplnosti a pustíme algoritmus znovu z tohoto vrcholu.
+
+Po dokončení kontroly nebude žádnému zkontrolovanému vrcholu zbývat žádná hrana.
+
+\subsubsection{Časová složitost}
+
+Algoritmus prochází každou hranou právě jednou.
+Pokud se v implementaci dosáhne smazání hrany (nebo přeskočení označených za smazané) v čase $O(1)$, má celý algoritmus složitost $O(m)$.
+
+\lemma{Eulerovský tah lze nalézt v čase $O(m).$}
+
+\subsection{Kreslení více tahy}
+
+Pokrytí grafu $\graph$ je rozdělení hran $G$ na množiny \range{E_1}{E_k} takové, že každé $E_i$ je množinou hran nějakého tahu.
+
+\lemma{Pokud má souvislý graf právě $2k$ vrcholů lichého stupně, pak každé jeho minimální pokrytí je tvořeno $k$ otevřenými tahy.}
+
+\lemma{Graf má otevřený eulerovský tah právě když je souvislý a má právě dva vrcholy lichého stupně.}
