@@ -1,0 +1,33 @@
+\section{Geometrické algoritmy}
+
+\subsection{Konvexní obal}
+
+Jedná se o nejkratší uzavřenou křivku, která v euklidovské rovině dokáže uvnitř které se nacházejí veškeré zadané body.
+
+\begin{description}
+    \item[Konvexní množina] Množina $K$ bodů, je konvexní, pokud pro každé dva body $x, y$ z množiny $K$ leží také celá úsečka $\overline{xy}$ leží také v této množině.
+    \item[Konvexní obal] Průnik všech konvexních množin obsahujících množinu $M$ (množina $M$ bodů).
+\end{description}
+
+\subsection{Algortimus hledání obalu}
+
+Obal se hledá algoritmem \uv{zametání roviny}.
+Rovina se prochází přímkou zleva doprava a udržuje konvexní obal již prošlých bodů.
+Pro výchozí bod je jasné, že v obálce obsažen jen.
+Nechť už nyní známe obálku $k-1$ bodů.
+Další bod určitě bude ležet v novém konvexním obalu (je nejvíce napravo), může se ale stát, že jeho přidáním hranice přestala být konvexním.
+To lze opravit tak, že budeme odebírat postupně předchozí body tak dlouho, dokud nebude obálka opět konvexní.
+
+Při implementaci se obal rozděluje na \uv{horní} a \uv{dolní} obálku.
+Obálky jsou impelementovány zásobníkem, v $k$-tém kroku algoritmu přidák $k$-tý bod do obou obálek.
+Před samotným přidáním se ale nejdříve odebírají předchozí body.
+
+\subsection{Časová složitost}
+
+V algoritmu je nejdříve nutné setřídit body podle osy $x$ v čase $O(n \log{n})$.
+Protože každý bod je odebrán nejvýše jednou, trvají odebrání dohromady $O(n)$.
+Konvexní obálku lze tedy vytvořit v čase $O(n \log{n})$.
+Při setříděném vstupu dokonce ze $O(n)$.
+
+Pokud by se více bodů vyskytovalo na stejné souřadnici $x$ (a různé $y$), lze je seřadit lexikograficky.
+Následně lze použít stejný algoritmus.
