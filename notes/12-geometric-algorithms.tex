@@ -34,3 +34,25 @@ Při setříděném vstupu dokonce ze $O(n)$.
 
 Pokud by se více bodů vyskytovalo na stejné souřadnici $x$ (a různé $y$), lze je seřadit lexikograficky.
 Následně lze použít stejný algoritmus.
+
+\subsection{Zjištění orientace úhlu}
+
+Pro orientaci úhlů se využívá determinant matice sestavené z dvou vektorů mezi posledními třemi body.
+Tyto vektory se vloží do řádků matice $M$ (ta bude následně rozměrů $2 \times 2$):
+
+\[
+    M
+    =
+    \begin{pmatrix} u \\ v \end{pmatrix}
+    =
+    \begin{pmatrix}
+     x_1 & y_1 \\
+     x_2 & y_2
+    \end{pmatrix}.
+\]
+
+Pro $\det (M)$ platí, že je záporný právě, když úhel je orientovaný doleva.
+Nezáporný je, pokud je úhel orientovaný doprava.
+Pokud je determinant nulový, leží vektory na stejné přímce.
+
+Determinant matice $2 \times 2$ lze zjistit výpočtem $M = x_1y_2 - x_2y_1$.
