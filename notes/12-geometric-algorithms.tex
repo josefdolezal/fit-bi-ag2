@@ -9,7 +9,7 @@ Jedná se o nejkratší uzavřenou křivku, která v euklidovské rovině doká�
     \item[Konvexní obal] Průnik všech konvexních množin obsahujících množinu $M$ (množina $M$ bodů).
 \end{description}
 
-\subsection{Algortimus hledání obalu}
+\subsubsection{Algortimus hledání obalu}
 
 Obal se hledá algoritmem \uv{zametání roviny}.
 Rovina se prochází přímkou zleva doprava a udržuje konvexní obal již prošlých bodů.
@@ -25,7 +25,7 @@ Pokud úhel nemíří správným směrem, nastává odebírání již vloženýc
 Obálky jsou impelementovány zásobníkem, v $k$-tém kroku algoritmu přidák $k$-tý bod do obou obálek.
 Před samotným přidáním se ale nejdříve odebírají předchozí body.
 
-\subsection{Časová složitost}
+\subsubsection{Časová složitost}
 
 V algoritmu je nejdříve nutné setřídit body podle osy $x$ v čase $O(n \log{n})$.
 Protože každý bod je odebrán nejvýše jednou, trvají odebrání dohromady $O(n)$.
@@ -35,7 +35,7 @@ Při setříděném vstupu dokonce ze $O(n)$.
 Pokud by se více bodů vyskytovalo na stejné souřadnici $x$ (a různé $y$), lze je seřadit lexikograficky.
 Následně lze použít stejný algoritmus.
 
-\subsection{Zjištění orientace úhlu}
+\subsubsection{Zjištění orientace úhlu}
 
 Pro orientaci úhlů se využívá determinant matice sestavené z dvou vektorů mezi posledními třemi body.
 Tyto vektory se vloží do řádků matice $M$ (ta bude následně rozměrů $2 \times 2$):
@@ -56,3 +56,48 @@ Nezáporný je, pokud je úhel orientovaný doprava.
 Pokud je determinant nulový, leží vektory na stejné přímce.
 
 Determinant matice $2 \times 2$ lze zjistit výpočtem $M = x_1y_2 - x_2y_1$.
+
+\subsection{Průsečíky úseček}
+
+Pro hledání průniků úseček lze využít algoritmus, který pro každou přímku vyzkouší, jestli se neprotíná s otatními.
+Takový algoritmus má složitost $O(n^2)$ a nejeví se jako složitý vzhledem k počtu přímek.
+
+Pro obecný případ, kdy se žádáné tři přímky neprotínají v jednom bodě, průnikem každých dvou úseček je nejvýše jeden bod, krajní bod úsečky neleží na úsečce jiné a žádné dvě nejsou vodorovné lze nalézt efektivnější algoritmus.
+
+Vyžívá se podobný algoritmus jako u konvexního obalu.
+Místo spojitého posouvání se ale skáče po událostech.
+Události jsou místa, kde začínají a končí úsečky, a místa jejich průsečíků.
+Konce a začátky jsou předem známé, průsečíky se objevují postupně.
+
+V každém kroku se vytvoří průřez $P$, který značí posloupnost úseček právě protnutých zametací přímkou.
+Tyto přímky jsou seřazené zleva doprava a pro každou dvojici se otestuje, zda-li spolu budou mít průsečík.
+Dále máme kalendář $K$, ve kterém jsou naplánované začátky a konce úseček.
+Pokud se navíc v průřezu zjistí, že dvě sousední přímky spolu budou mít průsečík, přidají se tam i tyto průsečíky.
+Situaci lze sledovat na obrázku \ref{fig:lines-intersection}.
+Zde průsečík $c$ a $d$ ještě není naplánován, protože přímky nejsou v průřezu vedlejší.
+
+\image[0.3\textwidth]{lines-intersection}{Průřez událostí v kalendáři}{lines-intersection}
+
+\subsubsection{Implementace}
+
+Implementace kalendáře probíhá haldou, je v něm v jednu chvíli maximálně $O(3n)$ událostí, operace s ním tedy zaberou $O(\log n)$
+Implementace průsečíku probíhá vyhledávacím stromem, kde klíče jsou ukazatele na úsečky ($x$-ové souřadnice se stále mění).
+Při průchodu se pak pro každý vrchol dopočítá aktuální souřadnice $x$ a následně se jde buď doprava nebo doleva.
+Operace se stromem zaberou $O(\log n)$.
+V každé události se provede $O(1)$ operací, takže událost zabere $O(\log n)$.
+Při celkovém počtu $O(n + p)$ událostí má algoritmus složitost $O((n + p) \cdot \log n)$.
+
+\subsubsection{Algoritmus}
+
+\begin{itemize}
+    \item Inicializace $P$ na $\emptyset$, $K$ na všechny začátky a konce.
+    \item Dokud není kalendář prázdný:
+
+    \begin{itemize}
+        \item Odebere se nevyšší událost.
+        \item Pokud je to začátek, přidá se úsečka do průřezu.
+        \item (jinak) Pokud je to konec, odebere se úsečka z průřezu.
+        \item (jinak) Pokud je to průsečík, úsečky v $P$ se prohodí.
+        \item Přepočet naplánovaných průsečíkových událostí v okolí změny v $P$ (max $\pm 2$).
+    \end{itemize}
+\end{itemize}
