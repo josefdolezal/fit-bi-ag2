@@ -19,6 +19,9 @@ Další bod určitě bude ležet v novém konvexním obalu (je nejvíce napravo)
 To lze opravit tak, že budeme odebírat postupně předchozí body tak dlouho, dokud nebude obálka opět konvexní.
 
 Při implementaci se obal rozděluje na \uv{horní} a \uv{dolní} obálku.
+Úhel horní obálky musí vždy mířit doprava, zatímco úhel dolní obálky vždy doleva.
+Pokud úhel nemíří správným směrem, nastává odebírání již vložených.
+
 Obálky jsou impelementovány zásobníkem, v $k$-tém kroku algoritmu přidák $k$-tý bod do obou obálek.
 Před samotným přidáním se ale nejdříve odebírají předchozí body.
 
