@@ -1,0 +1,48 @@
+\card{Síť, tok a kapacita grafu}{{\footnotesize
+    \begin{description}
+        \item[Síť] Čtveřice $(G, z, s, c)$, kde $\graph$ je orientovaný graf, $z$ je zdroj, $s$ je stok a $c$ je kapacita (funkce přiťazující hranám nezáporná reálná čísla).
+        \item[Tok] Každá funkce $f$, přiřazující hranám realáná čísla, pro které platí:
+            \begin{itemize}
+                \item Pro každou hranu $e \in E$ platí $0 \leq f(e) \leq c(e)$.
+                \item Pro každý vrchol mimo $z$ a $s$ platí, že součet vstupních ohodnocení je roven součtu výstupních.
+                \item Velikost toku je součet výstupních mínus součet vstupních ohodnocení zdrojového vrcholu.
+            \end{itemize}
+    \end{description}
+}}
+
+\card{Řez grafu}{
+    Množina hran mezi zdrojem a stokem, že odebereme-li tyto hrany z grafu, nebude existovat žádná orientovaná cesta ze zdroje do stoku.
+    Minimální řez je takový z řezů, který má největší součet kapacit obsažených hran.
+}
+
+\card{Elementární řez}{
+    Rozdělíme-li vrcholy grafu na dvě disjunktní množiny $A$ a $B$ takové, že $z \in A$ a $s \in B$, potom množina hran v řezu je elementární řez.
+}
+
+\card{Hlavní věta o tocích}{
+    \textit{Pro každou síť se velikost maximálního toku rovná kapacitě minimálního řezu.}
+}
+
+\card[nenasycená cesta]{Nasycená cesta}{
+    \begin{description}
+        \item[Nasycená cesta] Cesta, která obsahuje takovou hranu, že její tok je roven její kapacitě nebo pro hranu orientovanou proti je tok roven 0.
+        \item[Nenasycená cesta] Cesta která není nasycená. Nenasycená cesta ze zdroje do stoku se nazývá zlepšující.
+    \end{description}
+}
+
+\card{Algoritmus hledání maximálního toku}{{\footnotesize
+    Ford-Fullkersonův algorimus.
+
+    \begin{itemize}
+        \item Nastav tok všech hran na 0.
+        \item Pokud existuje zlepšující cesta z $z$ do $s$.
+            \begin{itemize}
+                \item Najdi nejmenší hodnotu, o kterou lze po celé cestě tok zvednout.
+                \item Zvyš tok každé hrany o tuto hodnotu.
+                \item Iteruj dokud zlepšující cesta existuje.
+            \end{itemize}
+        \item Stávající tok $f$ je maximální.
+    \end{itemize}
+
+    \textit{Algoritmus se vyplatí implementovat jako BFS.}
+}}
