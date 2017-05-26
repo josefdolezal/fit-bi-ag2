@@ -1,0 +1,34 @@
+\card{Hledání mostů}{ { \small
+    \textit{Hrana není most, právě když leží na alespoň jedné kružnici.}
+
+    Algoritmus funguje tak, že zjišťuje, zda-li je hrana na kružnici.
+    Hrana leží mezi vrcholy $x$ (blíže ke kořeni) a $y$, na který navazuje strom $T_y$.
+    Pokud kružnice existuje, musí existovat také zpětná hrana z $T_y$ do $x$ nebo jeho nadstromu.
+    Pokud taková hrana existuje, znamená to, že \texttt{in}$(t) < $ \texttt{in}$(s)$, kde $s \in T_y$ a $t$ je z nadtstromu bodu $x$.
+    Lze naimplementovat tak, že každý vrchol si pamatuje, do jakého nejmenšího vrcholu se z něj lze dostat.
+} }
+
+\card{Ucho grafu}{
+    Nechť $H$ je graf a $P$ je cesta délky alespoň 1 s koncovými body $u$ a $v$.
+    Pokud vrcholovým průnikem $H$ a $P$ jsou pouze body $u$ a $v$, pak $P$ nazveme uchem grafu.
+}
+
+\card[souvislost grafu]{Silná a slabá}{
+    \begin{description}
+        \item[Slabá souvislost] Orientovaný graf je slabě souvislý, pokud zrušením orientace hran dostaneme souvislý neorientovaný graf.
+        \item[Silná souvislost] Orientovaný graf je silně souvislý, pokud pro každé dva vrcholy $u$ a $v$ existuje orientovaná cesta z $u$ do $v$ a naopak (nemusí být stejná).
+    \end{description}
+}
+
+\card{Kondenzace grafu}{
+    Graf $cc(G)$, který má za vrcholy komponenty původního grafu.
+    Hrany mezi mezi vrcholy právě když v původním grafu vedla vedla hrana z jedné komponenty do druhé.
+}
+
+\card{Algoritmus hledání silných komponent}{
+    Komponenty se hledají od těch stokových.
+    Ty se obecně hledají těžko, lze ale najít zdrojové.
+    Algortimus tedy obrátí hrany (tím se prohodí vlastnosti komponent) a projde se DFS.
+    Následně se pouští DFS z vrcholů s největším \texttt{out} v původním grafu (ty jsou stokové).
+    Každý tento průchod projde vždy právě jednu komponentu (při průchodu jí označí barvou).
+}
