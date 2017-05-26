@@ -1,0 +1,66 @@
+\documentclass[20pt]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{xcolor}
+
+% iPhone 7 plus: 9:16
+\usepackage[paperheight=114mm,paperwidth=203mm,margin=12mm,heightrounded]{geometry}
+
+% increase math line height
+\addtolength{\jot}{1em}
+\pagenumbering{gobble}
+
+\newcommand{\card}[3][]{
+	\vspace*{\fill}
+
+	\newpage
+	\topskip0pt
+	\vspace*{\fill}
+		\large #2
+
+		\vspace{1cm}
+		\normalsize #1
+	\vspace*{\fill}
+	\newpage
+
+	\small \textcolor{gray}{#2 #1}
+	\topskip0pt
+	\vspace*{\fill}
+
+	\normalsize
+	#3
+	\vspace*{\fill}
+}
+
+% Graphs shortcuts
+\newcommand{\splitline}{\noindent\rule{8cm}{0.4pt}}
+\newcommand{\pair}[2]{\left(#1, #2\right)}
+\newcommand{\graph}{G=\pair{V}{E}}
+\newcommand{\edges}[1][G]{\E(#1)}
+\newcommand{\vertexes}[1][G]{V(#1)}
+\newcommand{\range}[2]{#1, \dots, #2}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\begin{document}
+
+\begin{center}
+
+\topskip0pt
+\vspace*{\fill}
+\Large Josef Doležal\\[1cm]
+\normalsize Veta otázky \textsc{bi-ag2}\\
+\normalsize LS 2016/17
+\normalsize
+
+\input{cards/lecture-01}
+
+\input{cards/lecture-02}
+
+\end{center}
+\end{document}
