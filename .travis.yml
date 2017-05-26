@@ -14,7 +14,9 @@ deploy:
   provider: releases
   api_key:
     secure: nXWVQixEWnFtCyltXJTN+O992KaXEB9vVGYmQf8WpiSL5CBltZ9cVH6EqQV7UlXc3zt1SFVhqCB5oWDdtBURnxxFywI3x5kQtbUiY2ky+y7iO0Z8QYJ6MXO/UsapgBZTfE3azRlWpotp6F2xUvpdf7prdcEl6UlOKBaCJY5+LkZZI+uRu+08QimtRuAqFaaKeKtSkmVVtfPuE+sRSsno+/znX/aXMpDGqhyeJpC/31x0ZAINpQNDSGS8P3hP1H9Y88hOazMFd/vjDXETkPUcsjueF9nUQsehlQrdEg24Oxn24a+ReSsoj/VOjN7wTULILK+vOiOdtbwaRM62Bzr9NXasvweeGO8zJnREGjzGk+E9wSFu6UtoXG1k7G5nUjufB+djRm8FAiWXtN5frnxwN0FOHhXHDHH2ql+loNTmFSaDoTJ55mcPCyoc7rK+x+IK5RgEDO1hR/+Le9o/2ws8QT1MiqMRtWkleaMbU93Tuk7jLNtTuka1AQoU/gWbtWr3Gso5QGS1mS8sKV8/7FnYp/yDgOKq0mA8LBlBws8O0RBYBsYcTT3NgVIddgshMkFzS0RQdUIu8Hwbjlft8Fex5Xp9EKmN3Ep5G5SnONKnMeyba8I70nQqkgtYeYZoY3WSFkwkSMF9MSXQaz+uZkCMeWTSY0/nV6YWKVIrZHV6vj0=
-  file: notes.pdf
+  file:
+    - notes.pdf
+    - cards.pdf
   skip_cleanup: true
   on:
     repo: josefdolezal/fit-bi-ag2
