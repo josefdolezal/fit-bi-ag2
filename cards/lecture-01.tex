@@ -1,0 +1,58 @@
+\card{Soubor stupňů}{
+    Nechť $\graph$ a $\vertexes$ je množina jeho vrcholů.
+    Soubor stupňů je posloupnost deg$(v_1)$, \dots, deg$(v_n)$.
+    
+    \medskip
+
+    Dva soubory jsou si rovny, právě když jeden lze zpermutovat na druhý.
+}
+
+\card{Havlova věta}{
+    Nechť $n \geq 0$ a \range{$d_1$}{$d_n$} je posloupnost celých čísel seřazená vzestupně.
+    Posloupnost \range{$d_1$}{$d_n$} je platným souborem stupňů právě když jsou všechny stupně nulové nebo lze-li soubor vzniklý odebráním posledního (stupně $k$) a následným odečtením 1 od $k$ posledních vrcholů platným souborem nějakého grafu.
+}
+
+\card{Artikulace}{
+    Artikulace v grafu $G$ je takový vrchol $v$, že graf $G \setminus v$ má více souvislých komponent než původní $G$.
+}
+
+\card{Most}{
+    Most je taková hrana $e$ grafu $G$, že graf $G \setminus e$ má více souvislých komponent než původní $G$.
+}
+
+\card[hranová 2-souvislost]{Vrcholová 2-souvislost}{
+    \begin{description}
+        \item[Vrcholová 2-souvislost] Graf, který má alespoň 3 vrcholy, je souvislý a nebsahuje artikulaci.
+        \item[Hranová 2-souvislost] Graf, který je souvislý a neobsahuje most.
+    \end{description}
+}
+
+\card[(blok grafu)]{Komponenta vrcholové 2-souvislosti}{
+    Graf, který má jako vrcholy vrcholy nějaké ekvivalenční třídy a jako hrany má hrany s nimi incidující.
+}
+
+\card[v orientovaném grafu]{DFS klasifikace hran}{
+    Budeme-li si pro každý vrchol v DFS průchodu udržovat čas, kdy jsme ho otevřeli (\texttt{in}) a čas, kdy jsme ho zavřeli (\texttt{out}), můžeme o hranách zjistit následující vlastnosti:
+
+    \medskip
+
+    \begin{tabular}{ l | l }
+        druhy hran & poznávací znamení \\ \hline
+        $\pair{u}{v}$ stromová & stav $v$ je \texttt{nenalezený} \\
+        $\pair{u}{v}$ zpětná & stav $v$ je \texttt{otevřený} \\
+        $\pair{u}{v}$ dopředná & stav $v$ je \texttt{uzavřený} a \texttt{in}$(u) < $ \texttt{in}$(v)$ \\
+        $\pair{u}{v}$ příčná & stav $v$ je \texttt{uzavřený} a \texttt{in}$(u) > $ \texttt{in}$(v)$ \\
+    \end{tabular}
+}
+
+\card[v neorientovaném grafu]{DFS klasifikace hran}{
+    V neorientovaných grafech je klasifikace zjednodušena, protože každá hrana je nalezena dvakrát.
+    
+    \medskip
+
+    \begin{tabular}{ l | l }
+        druhy hran & nalezení \\ \hline
+        stromová & nejdříve jako stromová, pak jako zpětná \\
+        zpětná & nejdříve jako zpětná, pak jako dopředná
+    \end{tabular}
+}
