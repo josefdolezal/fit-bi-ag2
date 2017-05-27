@@ -1,0 +1,82 @@
+\card{Oblouk a kreslení grafu}{{\footnotesize
+    \begin{description}
+        \item[Oblouk] Prosté spojité zobrazení $f: \langle 0, 1 \rangle \to \mathbb{R}^2$ uzavřeného intervalu $\langle 0, 1 \rangle$ do roviny.
+            Body $f(0)$ a $f(1)$ jsou koncové body oblouku, ostatní jsou vnitřní.
+        
+        \item[Nakreslení grafu] Dvojice $(b, \gamma)$ taková, že
+            \begin{itemize}
+                \item každému vrcholu $v \in V$ přiřadí bod $b(v)$ roviny ($b$ je prosté -- $b(v)$ navíc není vnitřním bodem žádného oblouku),
+                \item každé hraně ${u,v} \in E$ přiřazuje oblouk $\gamma(e)$ s koncovými body $b(u)$ a $b(v)$
+            \end{itemize}
+    \end{description}
+}}
+
+\card[rovinný graf]{Rovinné nakreslení}{
+    \begin{description}
+        \item[Rovinné nakreslení] Nakreslení, kde žádné dva oblouky nemají žádný společný bod (hrany se nekříží).
+        \item[Rovinný graf] Graf, který má alespoň jedno rovinné nakreslení.
+            Nazývá se také \textit{planární}.
+    \end{description}
+}
+
+\card[rovinný graf]{Rovinné nakreslení}{
+    \begin{description}
+        \item[Rovinné nakreslení] Nakreslení, kde žádné dva oblouky nemají žádný společný bod (hrany se nekříží).
+        \item[Rovinný graf] Graf, který má alespoň jedno rovinné nakreslení.
+            Nazývá se také \textit{planární}.
+    \end{description}
+}
+
+\card{Stěna grafu}{
+    Ekvivalenční třída relace, která určuje že dva vrcholy mezi sebou mají oblouk nebo se jedná o tentýž vrchol.
+
+    Neomezená stěna (\texttt{vnější}) je ta, která vede do nekonečna.
+    \texttt{Vnitřní} stěny jsou všechny ostatní.
+}
+
+\card[věta o Jordanově křivce]{Jordanova křivka}{
+    Topologická kružnice je podmnožina roviny $f(\langle 0, 1) \to \mathbb{R}^2$ je spojité zobrazení prosté na $\langle 0, 1)$ a $f(0) = f(1)$.
+
+    \medskip
+
+    Každá topologická kružnice dělí prostor na dvě stěny.
+}
+
+\card{Eulerova formule}{
+    Nechť $\graph$ je souvislý rovinný graf a $s$ je počet stěn nějakého jeho rovinného nakreslení, pak:
+    \[
+        |V| - |E| + s = 2.
+    \]
+
+    \medskip
+
+    \textbf{Důsledek}
+    
+    \smallskip
+
+    Pokud $|V| > 3$, pak $|E| \leq |V| - 6$.
+
+    Pokud navíc nemá trojúhelníky, pak $|E| \leq 2|V| - 4$.
+}
+
+\card{Kuratowského věta}{
+    Graf $G$ je rovinný právě tehdy, když žádný jeho podgraf není izomorfní s dělení grafu $K_5$ nebo $K_{3,3}$.
+
+    Tedy nemá tyto podgrafy ani s mezihranami.
+}
+
+\card{Multigraf}{
+    Trojice $(V, E \epsilon)$ taková, že
+
+    \begin{itemize}
+        \item $V,E$ jsou nějaké disjunktní množiny,
+        \item $\epsilon : E \to \binom{V}{2} \cup V$ je zobrazení, které hraně přiřadí její dva konce nebo případně jeden, pokud jde o smyčku.
+    \end{itemize}
+
+    Oproti standardním grafům tedy dovoluje paralelní hrany a smyčky.
+}
+
+\card{Duál grafu}{
+    Graf, který vznikne nahrazením stěn (vnitřních i vnější) grafu vrcholy.
+    Hrany mezi vrcholy vedou každou skrz každou hranu, kterou spolu stěny souseděly (vznikají smyčky).
+}
