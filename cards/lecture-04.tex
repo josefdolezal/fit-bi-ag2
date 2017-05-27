@@ -1,0 +1,23 @@
+\card[vrcholový řez]{Hranový řez}{
+    \begin{description}
+        \item[Hranový řez] Množina hran taková, že po jejich odebrání je vzniklý graf nesouvislý.
+        \item[Vrcholový řez] Množina vrcholů takových, že po jejich odebrání je graf nesouvislý.
+    \end{description}
+}
+
+\card[a jejich]{Hranová $k$-souvislost, vrcholová $k$-souvislost}{{\footnotesize
+    \begin{description}
+        \item[Hranová $k$-souvislost $k_v(G)$] Graf je hranově $k$-souvislý, pokud v něm neexistuje hranový řez velikosti nejvýše $k-1$.
+            Pro 2-souvislost platí, že v grafu neexistuje most (neexistuje řez velikosti 1 a méně -- může ale existovat řez velikosti 2 a více).
+        \item[Vrcholová $k$-souvislost $K_e(G)$] Graf je vrcholově $k$-souvislý, pokud v něm neexistuje vrcholový řez velikosti nejvýše velikosti $k-1$.
+    \end{description}
+
+    Pro každý graf platí, že $k_v(G) \leq k_e(G)$.
+}}
+
+\card[Věta o počtu cesta při vrcholové $k$-souvislosti]{Věta o počtu cesta při hranové $k$-souvislosti}{
+    \begin{description}
+        \item[Ford, Fulkerson] Pro každý graf a každé $t$ platí $k_e(G) \geq t$, právě když mezi každými dvěma vrcholy $u$ a $v$ existuje alespoň $t$ \textit{hranově} disjunktních cest.
+        \item[Menger] Pro každý graf a každé $t$ platí $k_v(G) \geq t$, právě když mezi každými dvěma vrcholy $u$ a $v$ existuje alespoň $t$ cest, které jsou až na vrcholy $u$ a $v$ disjunktní.
+    \end{description}
+}
