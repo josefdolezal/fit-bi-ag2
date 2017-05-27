@@ -1,0 +1,43 @@
+\card{Párování}{
+    Množina hran v grafu taková, že každý vrchol patří do nejvýše jedné hrany z $M$ (žádný vechol není připojen k více než jedné hraně).
+
+    \medskip
+
+    Párování je \textit{perfektní}, právě když každý vrchol patří do právě jedné hrany z $M$.
+
+    \medskip
+
+    Párování lze nalézt v polynomiálním čase.
+}
+
+\card{Bipartitní graf}{
+    Graf je bipartitní, pokud lze jeho vrcholy rozdělit do dvou disjunktních množin $X$ a $Y$ tak, že pro každou hranu ${u, v} \in E$ platím že $u \in X$ a $v \in Y$ nebo naopak.
+}
+
+\card{Algoritmus párování v bipartitních grafech}{
+    Párování se hledá tak, že všechny hrany zorientujeme z partity $X$ do partity $Y$.
+    Následně přidáme vrchol $z$ a propojíme ho se všemi vrcholy z $X$ a vrchol $s$ se všemi vrcholy z $Y$.
+    Kapacity všech hran se nastaví na 1 a pustí se algoritmus toků.
+
+    \textit{Existuje algoritmus, který umožní nalézt největší párování v čase $O(nm)$.}
+}
+
+\card{Algoritmus párování v bipartitních grafech}{
+    Párování se hledá tak, že všechny hrany zorientujeme z partity $X$ do partity $Y$.
+    Následně přidáme vrchol $z$ a propojíme ho se všemi vrcholy z $X$ a vrchol $s$ se všemi vrcholy z $Y$.
+    Kapacity všech hran se nastaví na 1 a pustí se algoritmus toků.
+
+    \textit{Existuje algoritmus, který umožní nalézt největší párování v čase $O(nm)$.}
+}
+
+\card{Systémy různých reprezentantů.}{
+    Z množiny $X$ vyberu libovolný počet podmnožit $M_i$ (jedna množina se může opakovat).
+    SRR je výběr jednoho prvku z každé množiny $M_i$ takový, že všechny vybrané prvky jsou různé.
+    
+    SRR souvisý s párováním v bipartitním grafu.
+}
+
+\card{Hallova věta}{
+    Vybrané množiny $I$ z množiny $X$ mají SRR právě když $|\cup_{\forall i} I_i|$ je alespoň $I$.
+    Tedy počet všech prvků je alespoň takový, jako je počet množin z kterých chceme reprezentanty vybírat.
+}
