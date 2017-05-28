@@ -1,0 +1,42 @@
+\card{Obecný vyhledávací strom}{
+    Zakořeněný strom s určeným pořadím synů každého vrcholu.
+
+    \begin{description}
+        \item[Vnitřní vrcholy] Vrcholy s libovolným nenulovým počtem klíčů, pro $k$ klíčů má $k+1$ synů.
+            Klíče slouží jako oddělovače hodnot v podstromech.
+        
+        \item[Vnější vrcholy] Listy stromu, neobsahují data a nemají potomky.
+    \end{description}
+}
+
+\card{(a, b) strom}{
+    Obecný vyhledávací strom s parametry, pro který navíc platí:
+
+    \begin{itemize}
+        \item Kořen má 2 až $b$ synů, ostatní vnitřní vrcholy $a$ až $b$ synů,
+        \item všechny vnější vrcholy jsou ve stejné hloubce.
+    \end{itemize}
+}
+
+\card[operace]{(a, b) strom}{
+    \begin{tabular}{ l l p{11cm} }
+        Operace & Čas & Realizace \\ \hline
+
+        \texttt{Find} & $\Theta(\log n)$ & Hledání v synech od kořene dolů \\
+        \texttt{Insert} & $\Theta(\log n)$ & Nalezení volného místa ve vrcholu (+ možné dělení vrcholu) \\
+        \texttt{Delete} & $\Theta(\log n)$ & Nalezení vrcholu, nahrazení následníkem, odmazání (+ možné slévání vrcholů)
+    \end{tabular}
+}
+
+\card{B-stromy}{
+    Stromy varianty $(a, 2a - 1)$ nebo $(a, 2a)$.
+    Data v nich jsou uložená pouze na druhé nejnižší úrovni.
+    To zjednodušuje operace, ale zvyšuje redundanci dat.
+    Využívá se v databázových a souborových systémech.
+}
+
+\card{Univerzální hashování}{
+    Využívá se pro zmenšení pravděpodobnosti velkého počtu kolizí při určitém vstupu.
+    Místo jedné funkce se využívá rodina funkcí.
+    Při spuštění se náhodně vybere jedna funkce, o které uživatel nic neví a nemůže tedy vytvořit škodlivý vstup.
+}
