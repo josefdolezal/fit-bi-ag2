@@ -1,0 +1,32 @@
+\card{Algoritmus hledání vzdáleností všech vrcholů}{
+    Algoritmus iteruje maticí sousednosti tak, že se pro každou dvojici vrcholů $i$ a $j$ podívá, jestli je lepší využít přímou cestu nebo jestli je lepší si ji zkrátit přes nějaký jiný vrchol $k$.
+
+
+    Časová složitost je $O(n^3)$ (tři cykly zanořené v sobě), paměťová složitost je $O(n^2)$.
+}
+
+\card{Algoritmus hledání vzdáleností všech vrcholů}{
+    Algoritmus iteruje maticí sousednosti tak, že se pro každou dvojici vrcholů $i$ a $j$ podívá, jestli je lepší využít přímou cestu nebo jestli je lepší si ji zkrátit přes nějaký jiný vrchol $k$.
+
+
+    Časová složitost je $O(n^3)$ (tři cykly zanořené v sobě), paměťová složitost je $O(n^2)$.
+}
+
+\card[operace]{Fibonacciho haldy} {\footnotesize
+    \begin{tabular}{ l l l }
+        Operace & Čas & Realizace \\ \hline
+        \texttt{Insert} & $\Theta(1)$ & Vytvoření jednoprvkové haldy, pak merge \\
+        \texttt{GetMin} & $\Theta(1)$ & Ukazatel na minimum \\
+        \texttt{ExtractMin} & $\Theta(n), O^*(\log n)$ & {\scriptsize Odebereme prvek, potomky na konec seznamu + konsolidace } \\
+        \texttt{Merge} & $\Theta(1)$ & Přidání nové haldy na konec spoj. seznamu \\
+        \texttt{DecreaseKey} & $\Theta(n), \Theta^*(1)$ & {\scriptsize Snížení hodnoty, odtržení a vložení, odtrhávání rodičů } \\
+        \texttt{Delete} & $\Theta(n), O^*(\log n)$ & \texttt{DecreaseKey} + \texttt{ExtractMin} \\
+    \end{tabular}
+}
+
+\card[konsolidace]{Fibonacciho haldy} {
+    Konsolidace je proces opravení struktury haldy, který nastává po \texttt{ExtractMin}.
+    Jednotlivé stromy se rozdělí do $2\ceil{\log n}$ přihrádek podle řádu.
+    Z každé přihrádky vezmeme dva stromy a spojíme je (vyšší kořen se připojí pod nižší) a dáme do další přihrádky.
+    Takto se pokračuje dokud nezbyde jeden nebo žádný strom.
+}
