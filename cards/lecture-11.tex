@@ -1,0 +1,38 @@
+\card{Hamiltonovská kružnice, hamiltonovská cesta, hamiltonovský graf}{
+    \begin{description}
+        \item[Hamiltonovská kružnice] Kružnice obsahující všechny vrcholy grafu.
+        \item[Hamiltonovská cesta] Cesta v grafu, která obsahuje všechny vrcholy.
+        \item[Hamiltonovský graf] Graf, který obsahuje Hamiltonovskou kružnici.
+    \end{description}
+}
+
+\card{Chvátalův uzávěr}{
+    Chvátalův uzávěr je graf $[G]$, který z grafu $G$ vznikne doplněním hran.
+    V prvním kroku se přidají všechny existující vrcholy a hrany.
+    Následně dokud to lze, přidávají se hrany mezi vrcholy $u$ a $v$, pokud hrana zatím neexistuje a pokud deg$_{[G]^i}(u) +$ deg$_{[G]^i}(v) \geq |V|$.
+
+    Tento uzávěr je určen jednoznačně.
+}
+
+\card{TSP}{
+    TSP je problém nalezení hamiltonovské kružnice v ohodnoceném úplném grafu s minimálním součtem vah.
+
+    Algoritmicky obtížná úloha, pokud se navíc řeší, jestli je součet menší zadané $L$, jedná se o NP-úplný problém.
+}
+
+\card{TSP s trojúhelníkovou nerovností}{
+    TSP s trojúhelníky je upravený problém TSP.
+    Oproti běžnému TSP platí trojúhelníková nerovnost.
+    Tedy pro každé vrcholy $x, y$ a $z$ platí, že $w({x, y}) + w({y, z}) \geq w({x, z})$.
+}
+
+\card{Algoritmus TSP s trojúhelníkovou nerovností}{
+    Jedná se o 2-aproximační algoritmus.
+    Tedy nalezené řešení nejvýše 2 násobkem optimálního řešení.
+
+    \bigskip
+
+    Algoritmus nejdříve nalezne ohodnocenou kostru grafu $T$.
+    Následně se graf (včetně kostry) zorientuje se zachováním vah.
+    Dále pokud existuje vrchol $u$ s alespoň dvěma vstupními hranami, nahrazují se hrany $(v, u)$ a $(u, w)$ hranou $(v, w)$ (vytvoří se zkratka).
+}
