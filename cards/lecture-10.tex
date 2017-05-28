@@ -1,0 +1,31 @@
+\card{Tah, uzavřený tah, eulerovský tah, eulerovský graf}{
+    \begin{description}
+        \item[Tah] Sled v grafu, ve kterém se neopakují hrany.
+        \item[Uzavřený tah] Tah, který začíná i končí ve stejném bodě.
+        \item[Eulerovský tah] Tah, který prochází všemi hranami grafu (graf lze projít \uv{jedním tahem}).
+        \item[Eulerovský graf] Graf, který obsahuje eulerovský tah.
+    \end{description}
+}
+
+\card[složitost]{Algoritmus hledání eulerova tahu}{\footnotesize
+    Protože každý vrchol má sudý stupeň, vybereme libovolný $v$ a vyjdeme z něho.
+    Hranu, kterou jsme prošli smažeme (tím pádem má $u$ lichý stupeň a lze z něj odejít).
+    Tento postup opakujeme tak dlouho, dokud nedorazíme zpět do původního $v$, kde už neplatí podmínka sudosti při vstupu do vrcholu -- tím jsme našli uzavřený tah.
+    Při vynořování z rekurze se algoritmus dívá, vrchol ze kterého vyšel má ještě nějaké hrany.
+    Pokud ano, pustí algoritmus hledání tahu na tento vrchol.
+    Takto budou nalezeny veškeré hrany.
+
+    Složitost algoritmu je $O(m)$.
+    Graf má tento tah \textit{právě když} je souvislý a má všechny vrcholy sudého stupně.
+}
+
+\card{Pokrytí grafu}{
+    Rozdělení hran grafu na množiny $E_1, \dots, E_k$ takové, že každá $E_i$ ke množinou hran nějakého tahu.
+
+    Cílem je získat pokrytí s nejmenším počtem tahů.
+}
+
+\card{Eulerovská množina hran}{
+    Nechť $\graph$ je graf.
+    Množina hran $E' \subseteq E$ je eulerovská, pokud $(V, E')$ má všechny stupně sudé.
+}
