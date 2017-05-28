@@ -1,0 +1,61 @@
+\card[barevnost grafu]{Barvení grafu}{
+    Zobrazení $v: V \to {1, \dots, k}$, kde $k$ je nějaké nezáporné celé číslo, takové že pro hranu ${u, v} \in E$ platí $b(u) \neq b(v)$.
+    Tedy dvě sousedním vrcholům přiřadí vždy různé čísla (barvy).
+
+    \bigskip
+
+    Barevnost $_\chi(G)$ je nejmenší $k$ takové, že existuje obarvení $G$ pomocí $k$ barev.
+}
+
+\card{Algoritmus barvení grafu}{
+    First-fit algoritmus pracuje tak, že vezme seřazenou množinu vrcholů grafu.
+    První vrchol obarví první barvou.
+    Pro každý další vrchol se barva vybírá tak, že se projdou všichni sousedé a vybere se nejmenší barva, která ještě nebyla použita.
+    Pokud byly použity všechny barvy, vytvoří se barva nová a inkrementuje se barevnost.
+
+    Algoritmus nalezne nějaké obarvení, ne nutně optimální.
+}
+
+\card[jeho barevnost]{Degenerovanost grafu}{
+    Graf je $d$-degenerovaný, pokud v každém jeho podgrafu je existuje vrchol nejvýše stupně $d$.
+
+    Degenerovanost je nejmenší $d$ takové, že graf je $d$-degenerovaný.
+
+    Takový graf lze obarvit $d+1$ barvami.
+}
+
+\card[věta o pěti barvách]{Věta o čtyřech barvách}{
+    \begin{description}
+        \item[Věta o čtyřech barvách] Každý rovinný graf lze obarvit čtyřmi barvami.
+        \item[Věta o pěti barvách] Každý rovinný graf lze obarvit pomocí pěti barev.
+    \end{description}
+}
+
+\card{Klika a klikovost grafu}{
+    \begin{description}
+        \item[Klika v grafu] Podgraf grafu, který je izomorfní s úplným grafem.
+        \item[Klikovost grafu] Velikost největší kliky -- velikost největšího úplného podgrafu.
+    \end{description}
+}
+
+\card[nezávislost]{Nezávislá množina}{
+    \begin{description}
+        \item[Nezávislá množina $\omega(G)$] Množina vrcholů, mezi kterými nevede žádná hrana.
+        \item[Nezávislost $\alpha(G)$] Velikost největvší nezávislé množiny.
+    \end{description}
+}
+
+\card[a jeho barevnost]{Mycielskiánova konstrukce grafu}{{\footnotesize
+    Graf $M(G)$, který z původního grafu $G$ vznikne tak, že se nejprve vytvoří obraz grafu.
+    Následně se pro každý vrchol z množiny obrazů přidají hrany k vrcholům, se kterými byl spojen jeho vzor.
+    Dále se přidá nový vrchol $u$, který se propojí se všemi vrcholy a množiny obrazů.
+
+    \bigskip
+
+    Tato konstrukce dokazuje, že je možné vytvořit grafy s vysokou barevností i bez trojúhelníků.
+    Pokud v původním grafu nebyl trojúhelník, tak není ani v $M(G)$.
+    
+    \bigskip
+
+    Barevnost $M(G)$ je $_\chi(G) + 1$.
+}}
