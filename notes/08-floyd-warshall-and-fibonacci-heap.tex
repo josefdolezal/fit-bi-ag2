@@ -52,7 +52,9 @@ To se řeší pomocí \textit{konsolidace}, která sloučí stromy tak, aby jich
 \subsubsection{Operace \texttt{ExtractMin}}
 
 Tato operace odtrhne a vrátí minimální kořen.
-Jeho syny spojí do haldy a tu sloučí s původní haldou algoritmem \texttt{Merge}.
+Jeho syny spojí do haldy $S$.
+Kořenům stromů v haldě $S$ se zruší označení (pokud nějaké měli).
+$S$ se sloučí s původní haldou algoritmem \texttt{Merge}.
 Následně proběhne \textit{konsolidace}.
 
 \subsubsection{Konsolidace}

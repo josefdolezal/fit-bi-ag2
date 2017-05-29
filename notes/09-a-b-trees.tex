@@ -44,19 +44,23 @@ Je-li přeplněn i kořen, vytváří se nový kořen s jediným klíčem a dvě
 \subsection{Smazání prvku}
 
 Odebrání prvku probíhá po vyhledání.
-Nachází-li se prvek v předposlední hladině (pod ním už jsou jen listy), lze ho odebrat (+ ošetřit počet synů)
+Nachází-li se prvek v předposlední hladině (pod ním už jsou jen listy), lze ho odebrat a následně ošetřit počet synů.
 
 Klíč z jiné hladiny je nutné odstranit podobně jako v BVS.
 Nejdříve je nutné nalézt následníka a tím ho nahradit.
-Následník lze smazat, protože se nachází ve hladině nad listy.
+Následník se maže z poslední hladiny, lze ho odebrat a následně ošetřit počet synů.
 
-Pokud by při mazání došlo k případu, kdy vrchol ze kterého odebíráme klíč jich bude mít málo, je potřeba strukturu opravit.
-Toho se docílí tím, že pokud má jeho levý bratr pouze $a$ synů, spojíme vrchol s ním a přidáme navíc vrchol z otce, který je rozděloval.
-Problém se tím převedl na problém mazání klíče z otce.
+Pokud by při mazání došlo k případu, kdy vrchol ze kterého odebíráme klíč bude mít málo synů, je potřeba strukturu opravit:
 
-Má-li bratr více než $a$ synů, odpojíme jeho nejpravějšího a jeho největší klíč.
-Klíč přesuneme do otce a klíč který bratry odděloval přesuneme do vrcholu, odklud jsme mazali klíč.
-Odtrženého syna připojíme pod tento klíč.
+\begin{itemize}
+    \item Pokud má (pravý) bratr \textit{právě} $a$ synů, tento vrchol s ním spojím -- k sousednímu vrcholu nejdříve přidám klíč z rodiče, pak své klíče a pak své syny.
+        Nyní je potřeba zkontrolovat, že chyba není v rodiči.
+    
+    \item Pokud má (pravý) bratr \textit{více než} $a$ synů, klíč se z něho vypůjčí -- vezmeme nejpravějšího syna $c$ a nejpravější klíč $k$.
+        Klíč vezmeme a dáme ho do rodiče, klíč z rodiče, který původně vrcholy odděloval se přesune do vrcholu, z kterého se mazalo (proběhne rotace klíčů).
+        Odtržený podstrom $c$ připojíme k vrcholu.
+        Kontrola struktury v rodiči.
+\end{itemize}
 
 \subsubsection{Časová složitost}
 
