@@ -9,7 +9,7 @@ Jedná se o nejkratší uzavřenou křivku, která v euklidovské rovině doká�
     \item[Konvexní obal] Průnik všech konvexních množin obsahujících množinu $M$ (množina $M$ bodů).
 \end{description}
 
-\subsubsection{Algortimus hledání obalu}
+\subsubsection{Algortimus hledání obalu}\label{alg:konvexni-obal}
 
 Obal se hledá algoritmem \uv{zametání roviny}.
 Rovina se prochází přímkou zleva doprava a udržuje konvexní obal již prošlých bodů.
@@ -57,7 +57,7 @@ Pokud je determinant nulový, leží vektory na stejné přímce.
 
 Determinant matice $2 \times 2$ lze zjistit výpočtem $M = x_1y_2 - x_2y_1$.
 
-\subsection{Průsečíky úseček}
+\subsection{Průsečíky úseček}\label{alg:pruseciky-usecek}
 
 Pro hledání průniků úseček lze využít algoritmus, který pro každou přímku vyzkouší, jestli se neprotíná s otatními.
 Takový algoritmus má složitost $O(n^2)$ a nejeví se jako složitý vzhledem k počtu přímek.

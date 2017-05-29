@@ -12,7 +12,7 @@ Párování se nazývá \textbf{perfektní}, pokud má právě \(|V(G)| / 2 \) h
     Části $X$ a $Y$ se nazývají \textit{partity}.
 \end{description}
 
-\subsubsection{Algoritmus hledání párování}
+\subsubsection{Algoritmus hledání párování}\label{alg:parovani-v-bip-grafech}
 
 Párování v bipartitních grafech se nejčastěji hledá pomocí toků.
 Pro zadaný graf\newline $G=(X \cup Y,E)$, kde $X$ a $Y$ jsou partity $G$ se nejdříve všechny hrany zorientují z $X$ do $Y$ a přidají se nové vrcholy pro zdroj a stok.
@@ -24,7 +24,7 @@ Kapacity všem hranám se nastaví na $1$.
 
 Pomocí algoritmu pro hledání maximálního toku (Ford-Fulkersonův algoritmus) lze párování ve zkonstruované síti nalézt v čase \(O(n\cdot{}m)\).
 
-\subsection{Systémy různých reprezentantů}
+\subsection{Systémy různých reprezentantů}\label{alg:srr-v-bip-grafech}
 
 Nechť $X$ je konečná množina.
 Množinu $M$, která se skládá z podmnožin množiny $X$ (je to množina množin).
