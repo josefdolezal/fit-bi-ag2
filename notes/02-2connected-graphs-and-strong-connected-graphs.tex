@@ -4,7 +4,7 @@
 
 \lemma{Každý 2-souvislý graf obsahuje kružnici.}
 
-\lemma{Graf G je 2-souvislý právě když jej lze vyrobit z libovolné jeho kružnice postupným přidáváním \textit{uší}.}
+\lemma{Graf G je 2-souvislý právě když jej lze vyrobit z libovolné jeho kružnice postupným přidáváním \textit{uší}.}\label{lemma:charakterizace-2-souvislosti}
 
 \subsection{Silná souvislost a komponenty}
 
@@ -45,3 +45,5 @@ Protože platí, že pokud vede hrana v $G^T$ z komponenty $C_1$ do komponenty $
     \item Po projití všech vrcholů pomocí DFS se postupně odebírají vrcholy ze zásobníku $Z$.
     \item Pokud má vrchol $v$ nedefinovanou hodnotu $komp$ pustí se z něho DFS v původním grafu a navštěvují se vrcholy s nedefinovanou $komp$. Hodnota se $komp$ se dodefinuje na $v$. Vrcholy stejné komponenty mají stejnou hodnotu $v$.
 \end{enumerate}
+
+\lemma{Algoritmus najde rozloží graf na silné komponenty v čase a prostoru $\Theta(n+m)$.}\label{lemma:silne-komponenty-slozitost}

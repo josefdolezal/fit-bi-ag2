@@ -12,7 +12,7 @@ Vzorec je znázorněn na obrázku \ref{fig:floyd-warshall-triangle}.
 Algoritmus funguje tak, že nejprve zvolí $k$, následně pro každé dva vrcholy zkouší, trojúhelníkový výpočet, tedy jestli se vyplatí jít přímo nebo se vyplatí jít přes $k$.
 Hrany, které nelze využít (neexistují) jsou ohodnoceny jako $+\infty$.
 
-\lemma{Paměťová náročnost FW pro graf bez cyklů je $\Theta(n^2)$, časová náročnost je $\Theta(n^3)$.}
+\lemma{Paměťová náročnost FW pro graf bez cyklů je $\Theta(n^2)$, časová náročnost je $\Theta(n^3)$.}\label{lemma:floyd-warshall-slozitost}
 
 \subsection{Fibonacciho haldy}\label{data:fibonacciho-haldy}
 

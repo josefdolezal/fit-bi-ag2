@@ -12,7 +12,7 @@ Otázka existence této kružnice je NP-úplný problém.
 
 \subsection{Chvátalův uzávěr}\label{alg:chvataluv-uzaver}
 
-\lemma{Graf má Hamiltonovskou kružnici, právě když jí má Chvátalův uzávěr grafu.}
+\lemma{(Chvátalova věta) Graf má Hamiltonovskou kružnici, právě když jí má Chvátalův uzávěr grafu.}\label{lemma:chvatalova-veta}
 
 Chvátalův uzávěr je graf, který z původního grafu vznikne algoritmem:
 Pokud v grafu existují dva různé vrcholy $u$ a $v$, mezi kterými se nenachází hrana a součet jejich stupňů je větší než počet vrcholů, přidá se tato hrana do grafu.
@@ -27,7 +27,7 @@ Výsledný graf se nazývá Chátalovým uzávěrem značeným $[G]$.
 Chvátalovým uzávěrem je úplný graf, který jistě Hamiltonovský je.
 Tedy musí být Hamiltonovský i původní graf.
 
-\lemma{(Diracova věta) Nechť graf $G$ má alespoň 3 vrocholy a pro každý vrchol z $v \in V(G)$ platí, že deg $v \geq \frac{|V(G)|}{2}$. Takový graf je Hamiltonovský.}
+\lemma{(Diracova věta) Nechť graf $G$ má alespoň 3 vrocholy a pro každý vrchol z $v \in V(G)$ platí, že deg $v \geq \frac{|V(G)|}{2}$. Takový graf je Hamiltonovský.}\label{lemma:dicarova-veta}
 
 \subsection{Problém obchodního cestujícího -- TSP}
 

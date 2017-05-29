@@ -15,7 +15,7 @@ Ukázka eulerovského grafu je vidět na obrázku \ref{fig:euler-graph}.
     \item[Eulerovský graf] Graf, ve kterém existuje uzavřený eulerovský tah.
 \end{description}
 
-\lemma{Graf je eulerovský právě tehdy, když je souvislý a stupeň každého vrcholu je sudý.}
+\lemma{Graf je eulerovský právě tehdy, když je souvislý a stupeň každého vrcholu je sudý.}\label{lemma:veta-o-eulerovskych-grafech}
 
 \subsection{Hledání tahu}\label{alg:euleruv-tah}
 
@@ -37,13 +37,13 @@ Po dokončení kontroly nebude žádnému zkontrolovanému vrcholu zbývat žád
 Algoritmus prochází každou hranou právě jednou.
 Pokud se v implementaci dosáhne smazání hrany (nebo přeskočení označených za smazané) v čase $O(1)$, má celý algoritmus složitost $O(m)$.
 
-\lemma{Eulerovský tah lze nalézt v čase $O(m).$}
+\lemma{Eulerovský tah lze nalézt v čase $O(m)$.}\label{lemma:eulerovsky-tah-slozitost}
 
 \subsection{Kreslení více tahy}
 
 Pokrytí grafu $\graph$ je rozdělení hran $G$ na množiny \range{E_1}{E_k} takové, že každé $E_i$ je množinou hran nějakého tahu.
 
-\lemma{Pokud má souvislý graf právě $2k$ vrcholů lichého stupně, pak každé jeho minimální pokrytí je tvořeno $k$ otevřenými tahy.}
+\lemma{Pokud má souvislý graf právě $2k$ vrcholů lichého stupně, pak každé jeho minimální pokrytí je tvořeno $k$ otevřenými tahy.}\label{lemma:pocet-otevrenych-tahu}
 
 \lemma{Graf má otevřený eulerovský tah právě když je souvislý a má právě dva vrcholy lichého stupně.}
 
@@ -56,4 +56,4 @@ Takové grafy mohou vzniknout vynecháním některých hran (obsahují ale půvo
 
 \lemma{Nechť existuje neprázdná eulerovská podmnožina hran. Graf s touto podmnožinou obsahuje kružnici.}
 
-\lemma{Nechť existuje eulerovská podmnožina hran $E'$. Potom $E'$ je je sjednocením nějakých množin \range{E_1}{E_k} $\subseteq E$ takových, že každá $E_i$ je množina hran nějaké kružnice v $G$ a všechny $E_i$ jsou navzájem disjunktní.}
+\lemma{Nechť existuje eulerovská podmnožina hran $E'$. Potom $E'$ je je sjednocením nějakých množin \range{E_1}{E_k} $\subseteq E$ takových, že každá $E_i$ je množina hran nějaké kružnice v $G$ a všechny $E_i$ jsou navzájem disjunktní.}\label{lemma:eulerovy-mnoziny}

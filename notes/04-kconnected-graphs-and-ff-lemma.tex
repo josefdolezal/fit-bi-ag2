@@ -31,22 +31,21 @@ Vrcholovou souvislost $k_v$ lze definovat jako nejmenší vrcholový řez.
 
 Obdobné tvrzení platí i pro vrcholovou souvislost.
 
-\lemma{V každém grafu také platí}
-
+\lemma{V každém grafu platí
 \[
     k_v(G) \leq k_e(G) \text{.}
-\]
+\]}\label{lemma:vztah-souvislosti}
 
 Nerovnost lze odvodit z \uv{motýlkového} grafu.
 
 \subsection{Ford-Fulkersonova věta}
 
-\lemma{Pro každý graf $G$ a každé přirozené $t$ palatím že \(k_e \geq k\), právě když mezi každými dvěma různými vrcholy $u$ a $v$ existuje alespoň $t$ hranově (úplně) disjunktních cest.}
+\lemma{Pro každý graf $G$ a každé přirozené $t$ palatím že \(k_e \geq k\), právě když mezi každými dvěma různými vrcholy $u$ a $v$ existuje alespoň $t$ hranově (úplně) disjunktních cest.}\label{lemma:ford-fulkersonova-veta}
 
 \subsection{Mengerova věta}
 
 Obdobné tvrzení jako \textit{Ford-Fulkersonova věta}, platí ale pro vrcholovou souvislost.
 
-\lemma{Pro každý graf $G$ a každé přirozené $t$ platí, že \(k_v(G) \geq t\), právě když mezi každými dvěma různými vrcholy $u$ a $v$ existuje alespoň $t$ cest, které jsou až na vrcholy $u$ a $v$ disjunktní.}
+\lemma{Pro každý graf $G$ a každé přirozené $t$ platí, že \(k_v(G) \geq t\), právě když mezi každými dvěma různými vrcholy $u$ a $v$ existuje alespoň $t$ cest, které jsou až na vrcholy $u$ a $v$ disjunktní.}\label{lemma:mengerova-veta}
 
 Mezi každými dvěma vrcholy tedy můsí být alespoň $t$ různých cest, ktré sdílejí jen koncové vrcholy, jinak žádné.

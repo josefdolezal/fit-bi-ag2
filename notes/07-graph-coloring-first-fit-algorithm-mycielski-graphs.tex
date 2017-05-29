@@ -28,7 +28,9 @@ Podle barevnosit sousedů obarví sebe první volnou barvou, pokud je první vol
 
 \lemma{Každý \textit{d-degenerovaný} graf lze obarvit $d+1$ bravami.}
 
-\lemma{Každý rovinný graf lze obarvit 4 barvami.}
+\lemma{Každý rovinný graf lze obarvit 4 barvami.}\label{lemma:veta-o-ctyrech-barvach}
+
+\lemma{Každý rovinný graf lze obarvit 5 barvami.}\label{lemma:veta-o-peti-barvach}
 
 \subsection{Klikovost}
 
@@ -43,8 +45,10 @@ Podle barevnosit sousedů obarví sebe první volnou barvou, pokud je první vol
 
 \subsection{Mycielskiho konstrukce grafu}\label{alg:mycielskian}
 
-Velké kliky nejsou jediným důvodem pro velkou barevnost, např. Mycielskiho graf má nízkou klikovost, ale vysokou barevnost.
+Trojúhelníky a velké kliky nejsou jediným důvodem pro velkou barevnost, např. Mycielskiho graf má nízkou klikovost a nemá trojúhelníky, ale vysokou barevnost.
 Sestrojí se tak, že se vezme graf $G$ a jeho vrcholy $(v_1, \dots, v_n)$ se \uv{zkopírují} a přidají se pro ně hrany do stejných vrcholů, jako měly jejich vzory.
 Navíc se přidá nový vrchol, se kterým se kopie také spojí.
 
 Barevnost takového grafu je $\chi(G) + 1$. 
+
+\lemma{Pro každé $k \in N$ existuje graf bez trojúhelníků s barevností alespoň $k$}.\label{lemma:graf-s-barevnosti-k}
