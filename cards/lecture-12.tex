@@ -1,0 +1,52 @@
+\card[konvexní obal]{Konvexní množina}{
+    \begin{description}
+        \item[Konvexní množina] Množina $K$ bodů v prostoru $\mathbb{R}^d$ pro kterou platí, že pro každé dva body $u$ a $v$ je také celá úsečka $\overline{uv}$ v množině $K$.
+        \item[Konvexní obal množiny $M$] Průnik všech nekonečně mnoha konvexních množin obsahujících množinu $M$.
+    \end{description}
+}
+
+\card[složoitost]{Algoritmus hledání konvexního obalu}{\footnotesize
+    Algoritmus funguje na principu \uv{zametání roviny}.
+    Rovina se prochází přímkou zleva doprava (vstup musí být seřazen primárně podle $x$, pak $y$).
+    Vytvoří se horní (směrem doprava) a spodní (směrem doleva) obálka a první (nejlevější) bod se do ní přidá.
+    Následně v $k$-tém kroku se přidá $k$-tý vrchol do horní i spodní obálky.
+    Z obálky se nejdříve odebírá, až teprve se $k$-tý bod přidá.
+    Tím se může porušit směr obálek a je možné, že bude potřeba některé předchozí vrcholy odebrat dokud se směr neopraví.
+
+    \bigskip
+
+    Při setříděném vstupu je časová složitost $O(n)$, při nesetříděném $O(n \log n)$
+}
+
+\card{Zjištění orientace úhlu}{
+    Lze zjistit pomocí determinantu matice $2 \times 2$, krerá má poslední dva vektory (mezi třemi vrcholy) zapsané v řádcích:
+    \[
+        M =
+        \begin{pmatrix} u \\ v \end{pmatrix} =
+        \begin{pmatrix}
+            x_1 & y_1 \\
+            x_2 & y_2
+        \end{pmatrix}.
+    \]
+
+    Determinant lze vypočítat z rovnice $M = x_1y_2 - x_2y_1$.
+    Je-li nulový, jedná se o jednu přímku.
+    Záporný značí úhel orientovaný doprava, nezáporný značí úhel doleva.
+}
+
+\card{Algoritmus hledání průsečíků přímek}{
+    Využívá se algoritmus \uv{zametání roviny} shora dolů.
+    Algoritmus pracuje s událostmi v kalendáři, kterými jsou začátky a konce úsečeke a průsečíky.
+    Skáče se po událostech a vytvoří se průřez $P$ -- posloupnost přímek protnutá zametací přímkou.
+    Pro každou dvojici sousedních úseček se zkontroluje jestli se protnou a pokud ano, tak se průsečík přidá do kalendáře.
+    Pokud se mezi dvojice sousedních přímek dostane dočasně jiná přímka, jejich naplánovaný průsečík se musí odebrat (protože přímky nejsou sousední).
+}
+
+\card[datové struktury a složitost]{Algoritmus hledání průsečíků přímek}{
+    Kalendář se implementuje prioritní frontou s paměťovou složitostí $O(n)$ a časovou $O(\log n)$ pro každou operaci.
+
+    Průřez je implementovaný vyhledávacím stromem, který má jako klíče ukazatele na úsečky.
+    Při navštívení vrcholu se tak pokaždé $x$-ová souřadnice dopočítá podle aktuální polohy zametací přímky.
+
+    Celková časová složitost je $O((n + p) \log n)$.
+}
