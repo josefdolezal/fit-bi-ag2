@@ -9,7 +9,10 @@ Seznam materiálů k ostatním předmětům je v [samostatném repozitáři](htt
 
 ## Studijní materiály
 
-* [Semestrální výpisky z přednášek](notes) - zkompilované v záložce [releases](https://github.com/josefdolezal/fit-bi-ag2/releases)
+* [Semestrální výpisky z přednášek](notes)
+* [Kartičky s pojmy](cards)
+
+Materiály jsou zkompilované v záložce [releases](https://github.com/josefdolezal/fit-bi-ag2/releases).
 
 ## Domácí úlohy
 * [Modernizace železniční sítě](assignment-one) (hledání mostů v grafu)
