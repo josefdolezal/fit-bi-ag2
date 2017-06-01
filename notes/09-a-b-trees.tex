@@ -35,6 +35,7 @@ Nyní se vloží prvek do otce listu a přidá se mu nový list.
 Pokud stále platí podmínka s nejvýše $(b-1)$ klíči, vložení je hotovo.
 
 Pokud podmínka splněna není, rozdělí se klíče na tři části: prostřední klíč, levá a pravá část.
+Pro levou část platí, že bude mít $\floor{(b-1)/2}$ klíčů a pravá část bude mít $\ceil{(b-1)/2}$ klíčů.
 Prostřední klíč se vloží do rodiče kde se postupuje stejně.
 Takto se změna probublává až ke kořeni.
 Je-li přeplněn i kořen, vytváří se nový kořen s jediným klíčem a dvěma syny.
@@ -53,10 +54,10 @@ Následník se maže z poslední hladiny, lze ho odebrat a následně ošetřit 
 Pokud by při mazání došlo k případu, kdy vrchol ze kterého odebíráme klíč bude mít málo synů, je potřeba strukturu opravit:
 
 \begin{itemize}
-    \item Pokud má (pravý) bratr \textit{právě} $a$ synů, tento vrchol s ním spojím -- k sousednímu vrcholu nejdříve přidám klíč z rodiče, pak své klíče a pak své syny.
+    \item Pokud má (levý) bratr \textit{právě} $a$ synů, tento vrchol s ním spojím -- k sousednímu vrcholu nejdříve přidám klíč z rodiče, pak své klíče a pak své syny.
         Nyní je potřeba zkontrolovat, že chyba není v rodiči.
     
-    \item Pokud má (pravý) bratr \textit{více než} $a$ synů, klíč se z něho vypůjčí -- vezmeme nejpravějšího syna $c$ a nejpravější klíč $k$.
+    \item Pokud má (levý) bratr \textit{více než} $a$ synů, klíč se z něho vypůjčí -- vezmeme nejpravějšího syna $c$ a nejpravější klíč $k$.
         Klíč vezmeme a dáme ho do rodiče, klíč z rodiče, který původně vrcholy odděloval se přesune do vrcholu, z kterého se mazalo (proběhne rotace klíčů).
         Odtržený podstrom $c$ připojíme k vrcholu.
         Kontrola struktury v rodiči.
